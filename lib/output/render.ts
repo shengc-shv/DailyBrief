@@ -153,6 +153,7 @@ const CATEGORY_LABELS: Record<Category, string> = {
   tech: STR.catTech,
   finance: STR.catFinance,
   politics: STR.catPolitics,
+  'gd-ipo': '广东地区IPO',
 };
 
 const CATEGORY_DIGEST_LABELS: Record<Category, string> = {
@@ -174,6 +175,7 @@ const SUBCATEGORY_ORDER: Partial<Record<Category, string[]>> = {
   tech: ["github-trending", "trending-papers", "x-viral", "ai-news", "cn-community", "overseas-community"],
   finance: ["news"],
   politics: ["world"],
+  'gd-ipo': ["news"], 
 };
 
 const TECH_MAIN_SUBS = new Set(["github-trending", "trending-papers", "x-viral", "ai-news"]);
@@ -286,6 +288,7 @@ export function groupRaw(
     tech: new Map(),
     finance: new Map(),
     politics: new Map(),
+    'gd-ipo': new Map(),
   };
   // Pre-seed empty buckets for every enabled source so per-source-tabbed
   // subcategories (e.g. cn-community) still render a tab for sources that
@@ -551,6 +554,7 @@ export function renderHtml(
     finance: sumItems(raw.finance),
     politics: sumItems(raw.politics),
     community: sumItems(techCommunitySubs),
+    'gd-ipo': sumItems(raw['gd-ipo'] || []),
   };
 
   return `<!doctype html>
