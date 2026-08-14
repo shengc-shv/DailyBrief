@@ -415,7 +415,24 @@ export function groupRaw(
     }
     out[cat] = subs;
   }
-
+  // ⭐ 兜底方案：如果 gd-ipo 有数据但 out['gd-ipo'] 为空，强制扁平渲染
+  if (buckets['gd-ipo'] && buckets['gd-ipo'].size > 0) {
+    const existing = out['gd-ipo'] || [];
+    if (existing.length === 0) {
+      const flatSources: SourceGroup[] = [];
+      for (const [id, b] of buckets['gd-ipo'].entries()) {
+        flatSources.push(toSourceGroup(id, b, undefined));
+      }
+      if (flatSources.length > 0) {
+        out['gd-ipo'] = [{
+          id: 'all',
+          name: '广东地区IPO',
+          sources: sortByRegistry(flatSources),
+        }];
+        console.log(`[groupRaw] ✅ gd-ipo 强制渲染 ${flatSources.reduce((sum, s) => sum + s.items.length, 0)} 条数据`);
+      }
+    }
+  }
   return out;
 }
 
