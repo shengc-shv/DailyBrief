@@ -9,6 +9,7 @@ async function main() {
   
   const crawlers = [
     new HKEXCrawler(),
+    new SSEIPOCrawler(),
     // 后续可继续添加: new SSEIPOCrawler(), new SZSEIPOCrawler() ...
   ];
 
