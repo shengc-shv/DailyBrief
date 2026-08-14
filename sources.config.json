@@ -197,7 +197,7 @@
   "url": "file://./data/crawled-articles.json",
   "category": "gd-ipo",
   "subcategory": "news",
-  "enabled": true,
+  "enabled": false,
   "locales": ["zh"]
 }
 ]
