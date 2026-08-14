@@ -91,6 +91,16 @@
     "locales": ["zh", "en"]
   },
   {
+    "id": "reuters-business",
+    "name": "Reuters Business",
+    "type": "rss",
+    "url": "https://feeds.reuters.com/reuters/businessNews",
+    "category": "finance",
+    "subcategory": "news",
+    "enabled": true,
+    "locales": ["zh", "en"]
+  },
+  {
     "id": "bloomberg-markets",
     "name": "Bloomberg Markets",
     "type": "rss",
@@ -141,10 +151,120 @@
     "locales": ["zh", "en"]
   },
   {
+    "id": "cnbc-top",
+    "name": "CNBC Top Stories",
+    "type": "rss",
+    "url": "https://www.cnbc.com/id/100003114/device/rss/rss.html",
+    "category": "finance",
+    "subcategory": "news",
+    "enabled": true,
+    "locales": ["zh", "en"]
+  },
+  {
+    "id": "yahoo-finance",
+    "name": "Yahoo Finance",
+    "type": "rss",
+    "url": "https://finance.yahoo.com/news/rssindex",
+    "category": "finance",
+    "subcategory": "news",
+    "enabled": true,
+    "locales": ["zh", "en"]
+  },
+  {
+    "id": "forbes-investing",
+    "name": "Forbes Investing",
+    "type": "rss",
+    "url": "https://www.forbes.com/investing/feed/",
+    "category": "finance",
+    "subcategory": "news",
+    "enabled": true,
+    "locales": ["zh", "en"]
+  },
+  {
+    "id": "nasdaq-news",
+    "name": "NASDAQ News",
+    "type": "rss",
+    "url": "https://www.nasdaq.com/feed",
+    "category": "finance",
+    "subcategory": "news",
+    "enabled": true,
+    "locales": ["zh", "en"]
+  },
+  {
+    "id": "investing-news",
+    "name": "Investing.com News",
+    "type": "rss",
+    "url": "https://www.investing.com/rss/news.rss",
+    "category": "finance",
+    "subcategory": "news",
+    "enabled": true,
+    "locales": ["zh", "en"]
+  },
+  {
+    "id": "people-finance",
+    "name": "人民网财经",
+    "type": "rss",
+    "url": "http://www.people.com.cn/rss/finance.xml",
+    "category": "finance",
+    "subcategory": "news",
+    "enabled": true,
+    "locales": ["zh"]
+  },
+  {
+    "id": "xinhua-finance",
+    "name": "新华网财经",
+    "type": "rss",
+    "url": "http://www.xinhuanet.com/finance/news_finance.xml",
+    "category": "finance",
+    "subcategory": "news",
+    "enabled": true,
+    "locales": ["zh"]
+  },
+  {
+    "id": "caixin-finance",
+    "name": "财新网金融",
+    "type": "rss",
+    "url": "https://rsshub.app/caixin/finance",
+    "category": "finance",
+    "subcategory": "news",
+    "enabled": true,
+    "locales": ["zh"]
+  },
+  {
     "id": "sec-s1-filings",
     "name": "SEC S-1 IPO Filings",
     "type": "rss",
     "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcurrent&type=S-1&count=40&output=atom",
+    "category": "gd-ipo",
+    "subcategory": "news",
+    "enabled": true,
+    "locales": ["zh", "en"]
+  },
+  {
+    "id": "sec-8k-filings",
+    "name": "SEC 8-K Filings (重大事件)",
+    "type": "rss",
+    "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcurrent&type=8-K&count=40&output=atom",
+    "category": "gd-ipo",
+    "subcategory": "news",
+    "enabled": true,
+    "locales": ["zh", "en"]
+  },
+  {
+    "id": "reuters-ipo",
+    "name": "Reuters IPO News",
+    "type": "rss",
+    "url": "https://www.reuters.com/companies/ipo/rss",
+    "category": "gd-ipo",
+    "subcategory": "news",
+    "enabled": true,
+    "locales": ["zh", "en"]
+  },
+  {
+    "id": "nasdaq-ipo-calendar",
+    "name": "NASDAQ IPO Calendar",
+    "type": "rss",
+    "url": "https://www.nasdaq.com/api/v1/ipo-calendar.rss",
     "category": "gd-ipo",
     "subcategory": "news",
     "enabled": true,
