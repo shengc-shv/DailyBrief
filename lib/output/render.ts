@@ -172,10 +172,10 @@ const SUBCATEGORY_ORDER: Partial<Record<Category, string[]>> = {
   // Locale filtering at registry level decides which actually appears:
   // zh mode keeps cn-community (V2EX / LinuxDo); en mode keeps
   // overseas-community (Hacker News / r/stocks).
-  tech: ["github-trending", "trending-papers", "x-viral", "ai-news", "cn-community", "overseas-community"],
+  tech: ["trending-papers", "x-viral", "ai-news"], 
   finance: ["news"],
-  politics: ["world"],
   'gd-ipo': ["news"], 
+  politics: ["world"],
 };
 
 const TECH_MAIN_SUBS = new Set(["github-trending", "trending-papers", "x-viral", "ai-news"]);
@@ -552,9 +552,8 @@ export function renderHtml(
   const counts = {
     tech: sumItems(techMainSubs),
     finance: sumItems(raw.finance),
-    politics: sumItems(raw.politics),
-    community: sumItems(techCommunitySubs),
     'gd-ipo': sumItems(raw['gd-ipo'] || []),
+     politics: sumItems(raw.politics),
   };
 
   return `<!doctype html>
@@ -1204,25 +1203,24 @@ export function renderHtml(
 
   <nav class="tabs" role="tablist">
     <button class="tab active" data-tab="tech">${CATEGORY_LABELS.tech}<span class="count">${counts.tech}</span></button>
-    ${trading ? `<button class="tab" data-tab="trading">${STR.catTrading}<span class="count">${trading.tickers.length}</span></button>` : ""}
-    <button class="tab" data-tab="politics">${CATEGORY_LABELS.politics}<span class="count">${counts.politics}</span></button>
     <button class="tab" data-tab="finance">${CATEGORY_LABELS.finance}<span class="count">${counts.finance}</span></button>
-    ${techCommunitySubs.length > 0 ? `<button class="tab" data-tab="community">${STR.catCommunity}<span class="count">${counts.community}</span></button>` : ""}
+    <button class="tab" data-tab="gd-ipo">${CATEGORY_LABELS['gd-ipo']}<span class="count">${counts['gd-ipo']}</span></button>
+    <button class="tab" data-tab="politics">${CATEGORY_LABELS.politics}<span class="count">${counts.politics}</span></button>
   </nav>
 
   <section class="panel active" data-panel="tech">
     ${renderRawCategoryPanel("tech", techMainSubs)}
   </section>
-  ${trading ? `<section class="panel" data-panel="trading">${renderTradingPanel(trading)}</section>` : ""}
-  <section class="panel" data-panel="politics">
-    ${renderRawCategoryPanel("politics", raw.politics)}
-  </section>
   <section class="panel" data-panel="finance">
     ${renderRawCategoryPanel("finance", raw.finance)}
   </section>
-  ${techCommunitySubs.length > 0 ? `<section class="panel" data-panel="community">
-    ${renderRawCategoryPanel("tech", techCommunitySubs)}
-  </section>` : ""}
+  <section class="panel" data-panel="gd-ipo">
+    ${renderRawCategoryPanel("gd-ipo", raw['gd-ipo'] || [])}
+  </section>
+  <section class="panel" data-panel="politics">
+    ${renderRawCategoryPanel("politics", raw.politics)}
+  </section>
+  
 
   <footer>
     ${STR.footer}
