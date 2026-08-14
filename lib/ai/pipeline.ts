@@ -22,6 +22,7 @@ export interface DailyReport {
   tech_briefs: BriefItem[];
   finance_briefs: BriefItem[];
   politics_briefs: BriefItem[];
+  gd_ipo_briefs: BriefItem[];   // <!-- 新增 -->
   editor_note: string;
   keywords: string[];
   /** Optional trading-signals section, present when scripts/daily.ts ran successfully. */
@@ -48,6 +49,7 @@ const PER_CATEGORY_LIMIT: Record<Category, number> = {
   tech: 25,
   finance: 20,
   politics: 15,
+  'gd-ipo': 20,   // <!-- 新增 -->
 };
 
 const MAX_AGE_DAYS = 14;
@@ -121,6 +123,7 @@ async function callOnce(userPayloadJson: string): Promise<DailyReport> {
           "  - tech_briefs: **3-5** tech BriefItems",
           "  - finance_briefs: **3-5** finance BriefItems",
           "  - politics_briefs: **2-3** politics BriefItems",
+          "  - gd_ipo_briefs: **2-3** Guangdong IPO BriefItems",   // <!-- 新增 -->
           "  - editor_note: 30-60 word editor's note",
           "  - keywords: 5-8 keywords",
           "",
@@ -140,6 +143,7 @@ async function callOnce(userPayloadJson: string): Promise<DailyReport> {
           "  - tech_briefs: **3-5 条** 科技 BriefItem",
           "  - finance_briefs: **3-5 条** 财经 BriefItem",
           "  - politics_briefs: **2-3 条** 时政 BriefItem",
+          "  - gd_ipo_briefs: **2-3 条** 广东地区IPO BriefItem",   // <!-- 新增 -->
           "  - editor_note: 30-60 字的编辑短评",
           "  - keywords: 5-8 个关键词",
           "",
@@ -188,6 +192,7 @@ async function callOnce(userPayloadJson: string): Promise<DailyReport> {
     tech_briefs: parsed.tech_briefs ?? [],
     finance_briefs: parsed.finance_briefs ?? [],
     politics_briefs: parsed.politics_briefs ?? [],
+    gd_ipo_briefs: parsed.gd_ipo_briefs ?? [],   // <!-- 新增 -->
     editor_note: parsed.editor_note ?? "",
     keywords: parsed.keywords ?? [],
   };
@@ -200,6 +205,7 @@ export async function generateDailyReport(
     tech: [],
     finance: [],
     politics: [],
+    'gd-ipo': [],   // <!-- 新增 -->
   };
   for (const a of articles) grouped[a.category].push(a);
 
