@@ -33,42 +33,51 @@ export class BaseCrawler {
    */
   async run() {
   console.log(`[${this.name}] 开始抓取...`);
-  const urls = await this.getUrls();
+  const items = await this.getUrls();
   let total = 0;
 
-  for (const item of urls) {
-    // 兼容两种格式：纯字符串 或 { url, headers }
+  for (const item of items) {
+    // 兼容多种格式
     const targetUrl = typeof item === 'string' ? item : item.url;
-    const headers = typeof item === 'object' && item.headers ? item.headers : { 'User-Agent': this.userAgent };
+    const method = item.method || 'GET';
+    const headers = item.headers || { 'User-Agent': this.userAgent };
+    const body = item.body || undefined;
 
     try {
-      const resp = await fetch(targetUrl, {
+      const fetchOptions = {
+        method: method,
         headers: headers,
         signal: AbortSignal.timeout(this.timeout),
-      });
+      };
       
+      // POST 请求需要 body
+      if (method === 'POST' && body) {
+        fetchOptions.body = body;
+      }
+
+      const resp = await fetch(targetUrl, fetchOptions);
+
       if (!resp.ok) {
         console.warn(`[${this.name}] ${targetUrl} 返回 ${resp.status}，跳过`);
         continue;
       }
-      
-      const html = await resp.text();
-      const articles = await this.parseArticle(html, targetUrl, headers);
-      
-      // 关键词过滤（基类已有 keywords，子类可重写）
-      const filtered = articles.filter(a => 
-        this.keywords.some(kw => 
+
+      const text = await resp.text();
+      const articles = await this.parseArticle(text, targetUrl);
+
+      const filtered = articles.filter(a =>
+        this.keywords.some(kw =>
           (a.title || '').includes(kw) || (a.excerpt || '').includes(kw)
         )
       );
-      
+
       this.results.push(...filtered);
       total += filtered.length;
       console.log(`[${this.name}] 从 ${targetUrl} 抓取 ${filtered.length} 条（共 ${articles.length} 条原始）`);
     } catch (err) {
       console.warn(`[${this.name}] ${targetUrl} 抓取失败: ${err.message}`);
     }
-    
+
     await new Promise(r => setTimeout(r, 1000 + Math.random() * 2000));
   }
 
