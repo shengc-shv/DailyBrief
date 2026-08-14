@@ -39,6 +39,7 @@ async function fetchAll(): Promise<ArticleInput[]> {
     try {
       const items = await fetchSource(source);
       console.log(`  ${source.id.padEnd(20)} ${items.length}`);
+      console.log(`[daily] 调试: 第一条数据 category = ${articles[articles.length - 1]?.category}`);
       articles.push(...items.map((it) => ({ ...it, source: source.name })));
     } catch (e) {
       const msg = e instanceof Error ? e.message : String(e);
