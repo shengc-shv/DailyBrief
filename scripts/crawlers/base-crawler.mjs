@@ -32,43 +32,49 @@ export class BaseCrawler {
    * 通用抓取方法 - 子类一般不需要重写
    */
   async run() {
-    console.log(`[${this.name}] 开始抓取...`);
-    const urls = await this.getUrls();
-    let total = 0;
+  console.log(`[${this.name}] 开始抓取...`);
+  const urls = await this.getUrls();
+  let total = 0;
 
-    for (const url of urls) {
-      try {
-        const resp = await fetch(url, {
-          headers: { 'User-Agent': this.userAgent },
-          signal: AbortSignal.timeout(this.timeout),
-        });
-        if (!resp.ok) {
-          console.warn(`[${this.name}] ${url} 返回 ${resp.status}，跳过`);
-          continue;
-        }
-        const html = await resp.text();
-        const articles = await this.parseArticle(html, url);
-        
-        // 关键词过滤
-        const filtered = articles.filter(a => 
-          this.keywords.some(kw => 
-            (a.title || '').includes(kw) || (a.excerpt || '').includes(kw)
-          )
-        );
-        
-        this.results.push(...filtered);
-        total += filtered.length;
-        console.log(`[${this.name}] 从 ${url} 抓取 ${filtered.length} 条（共 ${articles.length} 条原始）`);
-      } catch (err) {
-        console.warn(`[${this.name}] ${url} 抓取失败: ${err.message}`);
+  for (const item of urls) {
+    // 兼容两种格式：纯字符串 或 { url, headers }
+    const targetUrl = typeof item === 'string' ? item : item.url;
+    const headers = typeof item === 'object' && item.headers ? item.headers : { 'User-Agent': this.userAgent };
+
+    try {
+      const resp = await fetch(targetUrl, {
+        headers: headers,
+        signal: AbortSignal.timeout(this.timeout),
+      });
+      
+      if (!resp.ok) {
+        console.warn(`[${this.name}] ${targetUrl} 返回 ${resp.status}，跳过`);
+        continue;
       }
-      // 礼貌延迟
-      await new Promise(r => setTimeout(r, 1000 + Math.random() * 2000));
+      
+      const html = await resp.text();
+      const articles = await this.parseArticle(html, targetUrl, headers);
+      
+      // 关键词过滤（基类已有 keywords，子类可重写）
+      const filtered = articles.filter(a => 
+        this.keywords.some(kw => 
+          (a.title || '').includes(kw) || (a.excerpt || '').includes(kw)
+        )
+      );
+      
+      this.results.push(...filtered);
+      total += filtered.length;
+      console.log(`[${this.name}] 从 ${targetUrl} 抓取 ${filtered.length} 条（共 ${articles.length} 条原始）`);
+    } catch (err) {
+      console.warn(`[${this.name}] ${targetUrl} 抓取失败: ${err.message}`);
     }
-
-    console.log(`[${this.name}] 完成，共 ${this.results.length} 条`);
-    return this.results;
+    
+    await new Promise(r => setTimeout(r, 1000 + Math.random() * 2000));
   }
+
+  console.log(`[${this.name}] 完成，共 ${this.results.length} 条`);
+  return this.results;
+}
 
   /**
    * 转换格式供 DailyBrief 使用
