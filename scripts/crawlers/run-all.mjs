@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { HKEXCrawler } from './sources/hkex-ipo.mjs';  // 只导入港交所
 import { SSEIPOCrawler } from './sources/sse-ipo.mjs';
+import { EastMoneyIPOCrawler } from './sources/eastmoney-ipo.mjs';
 const OUTPUT_PATH = path.resolve(process.cwd(), 'data/crawled-articles.json');
 
 async function main() {
@@ -10,6 +11,7 @@ async function main() {
   const crawlers = [
     new HKEXCrawler(),
     new SSEIPOCrawler(),
+    new EastMoneyIPOCrawler(),
     // 后续可继续添加: new SSEIPOCrawler(), new SZSEIPOCrawler() ...
   ];
 
