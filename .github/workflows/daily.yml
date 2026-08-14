@@ -208,8 +208,27 @@ jobs:
       - name: Run local crawlers 
         run: node scripts/crawlers/run-all.mjs
         continue-on-error: true
+      # ---------- 2. 检查数据文件，若不存在则创建空文件 ----------
+      - name: Ensure data file exists
+        run: |
+          mkdir -p data
+          if [ ! -f data/crawled-articles.json ]; then
+            echo "⚠️ 爬虫未生成文件，创建空文件"
+            echo '[]' > data/crawled-articles.json
+          else
+            count=$(cat data/crawled-articles.json | jq '. | length' 2>/dev/null || echo 0)
+            echo "✅ 爬虫数据存在，共 $count 条"
+          fi
+
+      # ---------- 3. 将爬虫数据保存为 Artifact（永久下载） ----------
+      - name: Upload crawler data as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: crawler-data
+          path: data/crawled-articles.json
+          retention-days: 30   # 保留30天，可调整
       
-      - name: Generate today's report -test
+      - name: Generate today's report
         env:
           LLM_BACKEND: ${{ vars.LLM_BACKEND || 'anthropic' }}
           LLM_MODEL: ${{ vars.LLM_MODEL }}
