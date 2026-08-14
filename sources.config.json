@@ -672,5 +672,55 @@
     "locales": [
       "zh"
     ]
+  },
+    {
+    "id": "sec-s1-filings",
+    "name": "SEC S-1 IPO Filings",
+    "type": "rss",
+    "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcurrent&type=S-1&count=40&output=atom",
+    "category": "finance",
+    "subcategory": "ipo",
+    "enabled": true,
+    "locales": ["zh", "en"]
+  },
+  {
+    "id": "hkex-ipo-news",
+    "name": "港交所披露易IPO公告",
+    "type": "rss",
+    "url": "https://www.hkexnews.hk/listingnews/alllistingsnewsdays.php?rss=1",
+    "category": "finance",
+    "subcategory": "ipo",
+    "enabled": true,
+    "locales": ["zh", "en"]
+  },
+  {
+    "id": "cninfo-ipo",
+    "name": "巨潮资讯IPO公告",
+    "type": "rss",
+    "url": "https://rsshub.app/cninfo/announcement/ipo",
+    "category": "finance",
+    "subcategory": "ipo",
+    "enabled": true,
+    "locales": ["zh"]
+  },
+  {
+    "id": "sse-ipo",
+    "name": "上交所IPO审核动态",
+    "type": "rss",
+    "url": "https://rsshub.app/sse/ipo",
+    "category": "finance",
+    "subcategory": "ipo",
+    "enabled": true,
+    "locales": ["zh"]
+  },
+  {
+    "id": "szse-ipo",
+    "name": "深交所IPO审核动态",
+    "type": "rss",
+    "url": "https://rsshub.app/szse/ipo",
+    "category": "finance",
+    "subcategory": "ipo",
+    "enabled": true,
+    "locales": ["zh"]
   }
 ]
