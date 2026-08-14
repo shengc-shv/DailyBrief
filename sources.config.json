@@ -189,5 +189,15 @@
     "subcategory": "news",
     "enabled": true,
     "locales": ["zh"]
-  }
+  },
+  {
+  "id": "gd-local-scraper",
+  "name": "广东本地企业动态",
+  "type": "api",
+  "url": "file://./data/crawled-articles.json",
+  "category": "gd-ipo",
+  "subcategory": "news",
+  "enabled": true,
+  "locales": ["zh"]
+}
 ]
