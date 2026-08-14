@@ -9,7 +9,7 @@
       "publishedAt": "2026-08-13T11:00:00.000Z",
       "category": "tech",
       "source": "OpenAI News",
-      "summary": "OpenAI发布GPT-5.6开发者指南，介绍初创公司如何利用该模型及新的Responses API能力，以更智能的模型选择构建更快、成本更低的AI智能体。"
+      "summary": "OpenAI 发布 GPT-5.6 开发者指南，介绍初创公司如何利用更智能的模型选择与新的 Responses API 功能，构建更快、更节约成本的 AI 智能体。"
     },
     {
       "sourceId": "openai-news",
@@ -19,7 +19,7 @@
       "publishedAt": "2026-08-13T10:00:00.000Z",
       "category": "tech",
       "source": "OpenAI News",
-      "summary": "OpenAI预览全新API服务层级Ultrafast，由Cerebras提供支持，运行GPT-5.6 Sol速度最高提升14倍，每秒可输出最多750个token。"
+      "summary": "OpenAI 预览全新 API 服务等级 Ultrafast：基于 Cerebras 硬件，可将 GPT-5.6 Sol 的运行速度提升至 14 倍，每秒最多输出 750 个词元。"
     },
     {
       "sourceId": "openai-news",
@@ -29,7 +29,7 @@
       "publishedAt": "2026-08-13T09:00:00.000Z",
       "category": "tech",
       "source": "OpenAI News",
-      "summary": "OpenAI任命Dali Rajic为首席营收官，领导全球营收组织，推动企业客户实现AI全面价值。"
+      "summary": "OpenAI 任命 Dali Rajic 担任首席营收官（CRO），由其领导全球营收组织，帮助各行业企业充分实现 AI 的商业价值。"
     },
     {
       "sourceId": "openai-news",
@@ -282,7 +282,7 @@
       "publishedAt": "2026-08-13T17:04:18.000Z",
       "category": "tech",
       "source": "DeepMind Blog",
-      "summary": "DeepMind博客发布公告，正式推出Gemini 3.7 Flash模型。"
+      "summary": "Google DeepMind 官方博客发布 Gemini 3.7 Flash 模型，介绍其核心功能与应用场景，标志着 Flash 系列再度更新。"
     },
     {
       "sourceId": "deepmind-blog",
@@ -292,7 +292,7 @@
       "publishedAt": "2026-08-12T14:01:59.000Z",
       "category": "tech",
       "source": "DeepMind Blog",
-      "summary": "DeepMind博客介绍突破性手语转文本模型SL2T，为聋人和听力障碍用户提供新的手语功能，帮助将手语AI交到用户手中。"
+      "summary": "Google DeepMind 发布突破性手语转文本模型 SL2T，为聋人和听力障碍用户带来全新手语功能，将手语 AI 应用直接交到用户手中。"
     },
     {
       "sourceId": "deepmind-blog",
@@ -554,7 +554,7 @@
       "publishedAt": "2026-08-13T17:16:04.000Z",
       "category": "tech",
       "source": "Hugging Face Blog",
-      "summary": "Hugging Face博客介绍亚马逊Strands Agents、LeRobot与Hugging Face Storage Buckets的整合方案，让机器人数据记录、模型训练和部署可以在同一平台完成。"
+      "summary": "Hugging Face 与 Amazon 合作，推出结合 Strands Agents、LeRobot 与 Hugging Face Storage Buckets 的解决方案，实现从数据记录、模型训练到部署的一站式工作流。"
     },
     {
       "sourceId": "huggingface-blog",
@@ -564,7 +564,7 @@
       "publishedAt": "2026-08-13T00:00:00.000Z",
       "category": "tech",
       "source": "Hugging Face Blog",
-      "summary": "Hugging Face博客分享团队复现ICML 2026年2200篇论文的经验与教训，探讨提升AI研究可复现性的方法。"
+      "summary": "Hugging Face 团队发文，分享从 ICML 复现 2,200 篇论文后的经验与教训，探讨当前 AI 研究的可复现性挑战与改进方向。"
     },
     {
       "sourceId": "huggingface-blog",
@@ -574,7 +574,7 @@
       "publishedAt": "2026-08-12T16:14:36.000Z",
       "category": "tech",
       "source": "Hugging Face Blog",
-      "summary": "Hugging Face博客介绍艾伦人工智能研究所（AI2）的OlmoEarth嵌入功能，支持从OlmoEarth Studio导出自定义嵌入，用于下游分析。"
+      "summary": "AllenAI 通过 Hugging Face 博客发布 OlmoEarth 嵌入功能。该功能支持从 OlmoEarth Studio 导出自定义嵌入向量，便于用户进行下游分析。"
     },
     {
       "sourceId": "huggingface-blog",
@@ -821,17 +821,6 @@
     },
     {
       "sourceId": "huggingface-papers",
-      "title": "Spark-to-Paper: End-to-End Research Paper Generation as a Composable Skill",
-      "url": "https://huggingface.co/papers/2608.11924",
-      "excerpt": "Turning a research idea into a complete paper requires more than text generation: the system must retrieve literature, design and execute experiments, revise claims according to evidence, produce publication-ready figures, and maintain consistency across a long generation process. We present Spark-t",
-      "publishedAt": "2026-08-12T00:00:00.000Z",
-      "meta": "👍 272",
-      "category": "tech",
-      "source": "HuggingFace Trending Papers",
-      "summary": "提出 Spark-to-Paper，将研究论文生成构建为可组合技能：系统需完成文献检索、实验设计与执行、依据证据修正论断、生成出版级图表，并保证长文本生成全程一致性，实现从研究想法到完整论文的端到端自动化。"
-    },
-    {
-      "sourceId": "huggingface-papers",
       "title": "OpenART: Scaling Agent Red Teaming via Open-Ended Environment Evolution",
       "url": "https://huggingface.co/papers/2608.00677",
       "excerpt": "AI agents operate in persistent environments where early state changes can influence decisions far into the future. Unlike conventional language-model interactions, agent behavior is mediated through a shared state that is repeatedly modified and reused across long-horizon workflows. Current safety ",
@@ -839,7 +828,7 @@
       "meta": "👍 250",
       "category": "tech",
       "source": "HuggingFace Trending Papers",
-      "summary": "提出 OpenART，通过开放式环境演化为 AI 智能体扩展红队测试。针对持久化环境中早期状态变化影响长期决策的安全风险，自动演化出多样化环境与场景，系统评估智能体在长时程交互中的安全性与鲁棒性。"
+      "summary": "智能体安全评测面临持久环境中状态变化影响长期决策的难题。OpenART 提出开放式环境演化方法，自动生成多样化挑战性环境以扩展红队测试规模，让安全评估覆盖更多长期交互风险。"
     },
     {
       "sourceId": "huggingface-papers",
@@ -850,7 +839,7 @@
       "meta": "👍 105",
       "category": "tech",
       "source": "HuggingFace Trending Papers",
-      "summary": "提出 AI4AI，研究强模型到弱模型能力的测试时迁移：不更新小模型参数，而是借助 harness（提示、工具、控制流等）在推理阶段实现能力传递，探索不同于传统蒸馏的训练时迁移新路径。"
+      "summary": "针对能力蒸馏依赖训练时参数更新的局限，提出测试时强到弱能力迁移：借助提示、工具等 harness 在小模型推理时注入大模型能力，无需修改参数，为高效模型部署提供新路径。"
     },
     {
       "sourceId": "huggingface-papers",
@@ -861,7 +850,7 @@
       "meta": "👍 82",
       "category": "tech",
       "source": "HuggingFace Trending Papers",
-      "summary": "Mechanist 将 AI 本身作为科学仪器，自动化发现智能的底层机制，以应对 AI 开发日益自动化而机制解析仍依赖人工的差距，帮助理解模型能力来源与潜在风险。"
+      "summary": "面对 AI 能力机制不明且人工探索效率低下的瓶颈，Mechanist 将 AI 本身作为科学仪器，自动化发现智能背后的机制，加速机制可解释性研究，缩小模型开发与理解之间的鸿沟。"
     },
     {
       "sourceId": "huggingface-papers",
@@ -872,7 +861,7 @@
       "meta": "👍 76",
       "category": "tech",
       "source": "HuggingFace Trending Papers",
-      "summary": "DreamX-Phi 1.0 是面向机器人操作的动作条件视频世界模型：以当前帧、语言指令和末端执行器位姿及夹爪状态的动作序列为输入，预测未来观测；在此基础上进一步关注超越真实感的可控性与可用性。"
+      "summary": "面向机器人操作，提出动作条件视频世界模型 DreamX-Phi 1.0，输入当前观测帧、语言指令及末端执行器位姿动作序列，预测未来观测，为操作规划提供前瞻性环境模拟，助力技能学习与执行。"
     },
     {
       "sourceId": "huggingface-papers",
@@ -883,7 +872,7 @@
       "meta": "👍 73",
       "category": "tech",
       "source": "HuggingFace Trending Papers",
-      "summary": "随着技能库规模增长，SkillZip 提出保持契约的图压缩，在有限上下文预算下暴露最小且足够的可执行上下文，支撑大规模 agent 技能库的高效加载与推理。"
+      "summary": "随着智能体技能库日益庞大，在有限上下文预算下高效选用技能成为挑战。SkillZip 提出保持契约的图压缩方法，在保留可执行契约的前提下压缩技能图并暴露最小充分上下文，实现技能库的可扩展加载。"
     },
     {
       "sourceId": "huggingface-papers",
@@ -894,7 +883,7 @@
       "meta": "👍 56",
       "category": "tech",
       "source": "HuggingFace Trending Papers",
-      "summary": "提出 LLMRouter，为 LLM 路由提供统一的基础设施：统一不同路由方法的表述、评估与部署流程，解决现有路由器实现多样、难以公平比较和扩展的问题，助力按查询与预算约束选择最优模型以降低部署成本。"
+      "summary": "不同查询与预算下没有万能模型，LLM 路由是降本增效关键。LLMRouter 提出统一形式化描述与基础设施，覆盖路由器的开发、评估和部署全流程，使各类路由方法可比且易扩展。"
     },
     {
       "sourceId": "huggingface-papers",
@@ -905,7 +894,7 @@
       "meta": "👍 39",
       "category": "tech",
       "source": "HuggingFace Trending Papers",
-      "summary": "DarwinX 将智能体自进化视为自然选择过程，通过多谱系并行演化 harness（提示、工具、技能与控制流），避免单线搜索的路径依赖和局部改进导致的其它任务退化，提升整体能力。"
+      "summary": "智能体能力不仅取决于权重，还取决于提示、工具、技能与控制流构成的 harness。DarwinX 将 self-evolution 建模为种群自然选择，并行演化多个 harness，避免单一路径的局部最优与任务退步。"
     },
     {
       "sourceId": "huggingface-papers",
@@ -916,7 +905,7 @@
       "meta": "👍 38",
       "category": "tech",
       "source": "HuggingFace Trending Papers",
-      "summary": "Intern-S2-Preview 是一系列科学智能体基础模型，能够对异构模态的科学证据进行推理，与科学工具和环境交互，并在长任务周期中持续推动科学发现，面向科学发现全流程设计。"
+      "summary": "针对科学发现中多模态证据推理、工具交互与长周期任务推进需求，提出 Intern-S2-Preview 系列科学智能体基础模型，统一建模异构科学证据并支持工具调用，为自动化科研提供基座。"
     },
     {
       "sourceId": "huggingface-papers",
@@ -924,10 +913,10 @@
       "url": "https://huggingface.co/papers/2608.13552",
       "excerpt": "Video world models simulate future states conditioned on current observations and user actions. Recent systems have demonstrated impressive video consistency and action controllability over long sequences. However, fairly comparing these interactive models remains challenging. In practice, a human p",
       "publishedAt": "2026-08-13T00:00:00.000Z",
-      "meta": "👍 29",
+      "meta": "👍 30",
       "category": "tech",
       "source": "HuggingFace Trending Papers",
-      "summary": "针对交互式视频世界模型难以公平比较的问题，PlayWorld 提出以智能体玩家进行长时程目标评估的基准，统一衡量视频一致性、动作可控性与长期任务完成能力。"
+      "summary": "视频世界模型虽在一致性与可控性上进步显著，但公平比较仍困难。PlayWorld 提出以智能体玩家执行长程目标任务的基准，通过任务完成情况评估模型，弥合人工评估与真实应用之间的差距。"
     },
     {
       "sourceId": "huggingface-papers",
@@ -938,7 +927,7 @@
       "meta": "👍 28",
       "category": "tech",
       "source": "HuggingFace Trending Papers",
-      "summary": "AutoDesign 将多模态来源转化为结构化媒体输出的过程建模为以模型-harness 系统为核心的长时程智能体流程，提出元 harness 优化，使系统符合人类设计先验并通过经验积累可复用设计能力。"
+      "summary": "将多模态源转化为结构化媒体视为以模型-harness为中心的长期 agentic 过程。AutoDesign 提出元 harness 优化框架，自动对齐人类设计先验并从经验中积累可复用设计知识，提升长程任务效率。"
     },
     {
       "sourceId": "huggingface-papers",
@@ -949,7 +938,7 @@
       "meta": "👍 26",
       "category": "tech",
       "source": "HuggingFace Trending Papers",
-      "summary": "提出一个面向交互式叙事的基准，评估 LLM 智能体在用户干扰和开放剧情下能否保持长期逻辑一致性与叙事完整性，弥补该领域对长时程一致性研究的缺失。"
+      "summary": "交互叙事中，LLM 智能体常偏离剧本，破坏长期逻辑一致性与叙事完整。该工作提出专门基准，通过长程情节任务评测智能体保持一致性的能力，为游戏 AI 叙事研究建立评估标准。"
     },
     {
       "sourceId": "huggingface-papers",
@@ -960,7 +949,7 @@
       "meta": "👍 25",
       "category": "tech",
       "source": "HuggingFace Trending Papers",
-      "summary": "提出 Spatial Memory Agent，为 VLM 智能体引入基于经验的过程记忆来增强空间智能，区别于仅依赖后训练（SFT/RL）的路线，使智能体在具身规划等任务中更好利用历史空间经验。"
+      "summary": "为增强 VLM 智能体空间推理，现有方法多依赖后训练，成本高且不灵活。Spatial Memory Agent 构建基于经验的过程记忆，将空间任务经验显式存储并检索，以低成本方式提升具身智能体的空间智能。"
     },
     {
       "sourceId": "huggingface-papers",
@@ -971,7 +960,7 @@
       "meta": "👍 13",
       "category": "tech",
       "source": "HuggingFace Trending Papers",
-      "summary": "首个系统研究混合线性注意力 LLM 中 Massive activations 的工作，发现两种与架构对齐的形态：全注意力层前骤增的 pre-attention spikes，以及线性注意力层间持续的 inter-spike plateaus。"
+      "summary": "首次系统研究层交错混合线性注意力大模型中的 Massive Activations，发现其呈现两种架构对齐形态：全注意力层前的尖峰（PAS）和线性注意力之间的平台，为理解与优化此类模型提供新视角。"
     },
     {
       "sourceId": "huggingface-papers",
@@ -982,7 +971,7 @@
       "meta": "👍 11",
       "category": "tech",
       "source": "HuggingFace Trending Papers",
-      "summary": "提出 Skill-Harness Evolution，让具身智能体通过自主演化技能、上下文、动作接口与执行 harness 来提升能力，在依赖基础模型权重的同时，弥补纯微调/强化学习对系统外围配置优化的不足。"
+      "summary": "具身智能体能力受技能、上下文、动作接口与执行 harness 影响，仅靠微调和强化学习成本高昂。该工作提出技能-harness 演化机制，让智能体在交互中自动生成与改进技能包，实现自进化式性能提升。"
     },
     {
       "sourceId": "huggingface-papers",
@@ -993,7 +982,7 @@
       "meta": "👍 11",
       "category": "tech",
       "source": "HuggingFace Trending Papers",
-      "summary": "AutoWorldModel-Bench 提供以状态为中心的自动化世界模型研究基准，评估 AI 编码智能体作为自主研究者改进架构、训练目标与状态表征的能力，揭示世界建模中无主导配方的开放问题。"
+      "summary": "世界模型研究中架构、训练目标与状态表示组合复杂，尚无统一最优解。AutoWorldModel-Bench 提出以状态为中心的基准测试，将 AI 编码智能体作为自主研究者，自动迭代改进世界模型，为自动化科研提供标准化环境。"
     },
     {
       "sourceId": "huggingface-papers",
@@ -1004,7 +993,7 @@
       "meta": "👍 10",
       "category": "tech",
       "source": "HuggingFace Trending Papers",
-      "summary": "提出通过潜在动态推理学习外推式视频世界模型，从像素序列中纯数据驱动地捕捉世界演化规律，使视频生成不仅视觉逼真，而且能遵循物理动态法则进行外推预测。"
+      "summary": "主流视频扩散模型只拟合像素而忽略状态随时间转移的动态规律，导致生成不遵守物理。该工作提出潜在动态推理外推模型，从数据纯学习演化机制，在预测未来帧时更好遵循世界动态。"
     },
     {
       "sourceId": "huggingface-papers",
@@ -1015,7 +1004,7 @@
       "meta": "👍 9",
       "category": "tech",
       "source": "HuggingFace Trending Papers",
-      "summary": "通过对照实验系统考察修辞选择如何在保持科学内容不变时影响 AI 审稿判断，揭示 AI 同行评审中的修辞敏感性和潜在 reward hacking，并对不同评估条件下的效应差异进行剖析。"
+      "summary": "为检验 AI 审稿的奖励黑客风险，该工作构造科学内容相同但修辞风格受控对照的论文，分析不同评审条件下修辞对 AI 评审判断的影响，揭示修辞敏感性可能扭曲科学评价。"
     },
     {
       "sourceId": "huggingface-papers",
@@ -1026,7 +1015,7 @@
       "meta": "👍 8",
       "category": "tech",
       "source": "HuggingFace Trending Papers",
-      "summary": "提出基于物理的反射模拟合成配对视频数据，结合扩散模型实现视频去反射；解决视频反射去除中配对数据缺失与时间一致性问题，提升透过玻璃拍摄视频的视觉质量和下游任务性能。"
+      "summary": "视频透过玻璃拍摄常含反射，但成对数据缺失使视频去反射研究滞后。该工作提出基于物理的反射仿真生成配对训练数据，并设计扩散模型进行视频去反射，兼顾时间一致性，弥补数据与算法空白。"
     },
     {
       "sourceId": "huggingface-papers",
@@ -1037,7 +1026,7 @@
       "meta": "👍 7",
       "category": "tech",
       "source": "HuggingFace Trending Papers",
-      "summary": "对多模态 LLM 的“用图思考”范式进行因果审计，考察裁剪、缩放等主动视觉操作的真实收益，发现这些操作相比直接推理增益甚微或为负，且 token 成本更高，还可能反复裁剪无关区域。"
+      "summary": "为多模态 LLM 配备裁剪、缩放等视觉操作常被期待能提升推理，但审计发现这些操作相对直接推理仅产生边际甚至负增益，并显著增加 token 开销。该工作通过因果实验揭示“用图像思考”范式的幻觉效应。"
     },
     {
       "sourceId": "huggingface-papers",
@@ -1047,7 +1036,8 @@
       "publishedAt": "2026-08-07T00:00:00.000Z",
       "meta": "👍 6",
       "category": "tech",
-      "source": "HuggingFace Trending Papers"
+      "source": "HuggingFace Trending Papers",
+      "summary": "视觉 token 剪枝可降低多模态大模型推理成本，但现有方法依赖手工规则与专家试错。该框架将剪枝策略设计自动化，由 AI 根据目标、预算与模型架构生成剪枝方案，兼顾效率与可移植性。"
     },
     {
       "sourceId": "huggingface-papers",
@@ -1056,6 +1046,16 @@
       "excerpt": "Agentic systems powered by large language models (LLMs) have opened new opportunities for business ideation. Yet existing approaches remain confined to a text-only paradigm, despite the inherently multimodal nature of real-world contexts. We thus introduce MBA-Bench, the first multimodal benchmark f",
       "publishedAt": "2026-08-12T00:00:00.000Z",
       "meta": "👍 6",
+      "category": "tech",
+      "source": "HuggingFace Trending Papers"
+    },
+    {
+      "sourceId": "huggingface-papers",
+      "title": "Full-bandwidth transformer",
+      "url": "https://huggingface.co/papers/2608.08888",
+      "excerpt": "Autoregressive transformers compute along two axes: horizontally across generated tokens, and vertically through model depth. Dense attention gives each token broad horizontal access to the past, but the vertical feedback channel between decoding steps remains narrow: only the sampled token returns ",
+      "publishedAt": "2026-08-09T00:00:00.000Z",
+      "meta": "👍 5",
       "category": "tech",
       "source": "HuggingFace Trending Papers"
     },
@@ -1085,16 +1085,6 @@
       "url": "https://huggingface.co/papers/2608.12313",
       "excerpt": "Creative agents still lack an effective way to learn from high-quality human films, limiting their ability to produce cinematic-grade videos. A key challenge is the absence of a structured video representation that is both faithful to film content and directly usable for agentic reasoning and manipu",
       "publishedAt": "2026-08-12T00:00:00.000Z",
-      "meta": "👍 4",
-      "category": "tech",
-      "source": "HuggingFace Trending Papers"
-    },
-    {
-      "sourceId": "huggingface-papers",
-      "title": "Full-bandwidth transformer",
-      "url": "https://huggingface.co/papers/2608.08888",
-      "excerpt": "Autoregressive transformers compute along two axes: horizontally across generated tokens, and vertically through model depth. Dense attention gives each token broad horizontal access to the past, but the vertical feedback channel between decoding steps remains narrow: only the sampled token returns ",
-      "publishedAt": "2026-08-09T00:00:00.000Z",
       "meta": "👍 4",
       "category": "tech",
       "source": "HuggingFace Trending Papers"
@@ -1140,6 +1130,16 @@
       "source": "HuggingFace Trending Papers"
     },
     {
+      "sourceId": "huggingface-papers",
+      "title": "Ready Cohorts: Bounding GPU Opportunity and Avoiding Host Round Trips in LLM-Agent Control",
+      "url": "https://huggingface.co/papers/2608.12123",
+      "excerpt": "LLM-agent services repeatedly execute small deterministic transitions between model and tool calls: route an outcome, update state, and emit the next effect. We ask when this control path exposes enough concurrent work for GPU execution, and what changes when a GPU-computed route decision remains on",
+      "publishedAt": "2026-08-12T00:00:00.000Z",
+      "meta": "👍 2",
+      "category": "tech",
+      "source": "HuggingFace Trending Papers"
+    },
+    {
       "sourceId": "tldr-ai",
       "title": "Claude Chrome Cowork 🌐, Grok 4.6 🚀, DeepSeek v4-Pro-0813 🧠",
       "url": "https://tldr.tech/ai/2026-08-13",
@@ -1147,7 +1147,7 @@
       "publishedAt": "2026-08-13T00:00:00.000Z",
       "category": "tech",
       "source": "TLDR AI",
-      "summary": "TLDR AI汇总当日AI要闻：Claude推出Chrome Cowork功能，xAI发布Grok 4.6，DeepSeek发布v4-Pro-0813模型。"
+      "summary": "TLDR AI 日报盘点当日人工智能领域动态：Claude 推出 Chrome Cowork 功能，Grok 4.6 发布，DeepSeek 推出 v4-Pro-0813 模型。"
     },
     {
       "sourceId": "tldr-ai",
@@ -1328,7 +1328,7 @@
       "publishedAt": "2026-08-13T05:44:39.000Z",
       "category": "tech",
       "source": "Smol AI News",
-      "summary": "Smol AI News报道，谷歌在3.6 Flash发布仅三周后快速推出Gemini 3.7 Flash，面向编码、Web开发、知识工作与智能体工作流，提供50%的入门价格折扣，基准测试大幅提升，其中DeepSWE得分65.3%，Code Arena Elo评分1588。"
+      "summary": "Google 在发布 Gemini 3.6 Flash 仅三周后，迅速推出 Gemini 3.7 Flash，主打编程、网页开发、知识工作与智能体工作流，首发价格下调 50%，基准得分提升，如 DeepSWE 65.3%、Code Arena Elo 1588。"
     },
     {
       "sourceId": "smol-ai-news",
@@ -1599,7 +1599,7 @@
       "publishedAt": "2026-08-14T05:30:39.000Z",
       "category": "tech",
       "source": "Latent Space",
-      "summary": "据Latent Space报道，谷歌发布Gemini 3.7 Flash，令Google DeepMind（GDM）重回行业前沿。报道以“虽处低谷，但未出局”形容此次发布。"
+      "summary": "Latent Space 报道称，Google 发布 Gemini 3.7 Flash，使 Google DeepMind 重新回到行业前沿。外界评价其“虽处下风，但并未出局”。"
     },
     {
       "sourceId": "latent-space",
@@ -1609,7 +1609,7 @@
       "publishedAt": "2026-08-13T01:53:47.000Z",
       "category": "tech",
       "source": "Latent Space",
-      "summary": "据Latent Space报道，SpaceXAI推出Grok 4.6和Grok @Bot，报道称这是AI队友类别迄今最重要的新进入者。"
+      "summary": "Latent Space 报道，SpaceXAI 发布 Grok 4.6 与 Grok @Bot，被视为“AI 队友”类别至今最重要的新入局者。"
     },
     {
       "sourceId": "latent-space",
@@ -1781,7 +1781,7 @@
       "publishedAt": "2026-08-13T13:41:10.000Z",
       "category": "tech",
       "source": "MIT Tech Review AI",
-      "summary": "警方科技巨头Flock宣布将调整警官对其全国车牌读取器网络的访问权限，以回应日益高涨的监控反对声浪，并试图赢回因大规模监控和警察滥权担忧而失去的合同。"
+      "summary": "美国警方科技巨头 Flock 宣布，将调整执法人员对其全美车牌识别摄像头网络的访问权限，以平息大规模监控和警方滥权引发的批评，并赢回流失的合同。"
     },
     {
       "sourceId": "mit-tech-review-ai",
@@ -1791,7 +1791,7 @@
       "publishedAt": "2026-08-13T09:00:00.000Z",
       "category": "tech",
       "source": "MIT Tech Review AI",
-      "summary": "《麻省理工科技评论》发布报道，深入探讨孩子们对AI的真实看法。记者原本预期会听到学生们像千禧一代和X世代当年使用CliffsNotes或TI-82计算器那样用AI作弊，但孩子们的实际反馈却与他们预想的不同。"
+      "summary": "MIT Technology Review 发文探讨孩子们对 AI 的感受，通过孩子自己的话来呈现。研究者原本预期一些孩子会承认用 AI 作弊，如同千禧一代和 X 世代使用 CliffsNotes 或 TI-82 计算器一样；报道给出了真实反馈。"
     },
     {
       "sourceId": "mit-tech-review-ai",
@@ -1801,7 +1801,7 @@
       "publishedAt": "2026-08-12T16:51:57.000Z",
       "category": "tech",
       "source": "MIT Tech Review AI",
-      "summary": "《麻省理工科技评论》发文探讨如何使用可信数据扩展AI智能体。文章指出，企业正在快速采用智能体，但许多组织难以实现预期投资回报，数据可信度成为关键。"
+      "summary": "MIT Technology Review 发文探讨如何用可信数据规模化 AI 智能体。文章指出，企业正快速采用智能体，高管普遍认可其变革潜力，但许多组织难以实现预期投资回报率。"
     },
     {
       "sourceId": "mit-tech-review-ai",
@@ -1875,7 +1875,7 @@
       "category": "tech",
       "meta": "@thejessezhang · 85.7K 粉丝 · 270.4K 阅 · 510 赞 · 30 转",
       "source": "X 推文 (AttentionVC)",
-      "summary": "三分之二的部署工作已由自家产品 Duet 自主完成。作者阐述背后的产品与部署哲学：如何让软件自动交付、人机分工边界在哪，以及为什么选择这条路线。"
+      "summary": "作者透露自家产品 Duet 已自主完成三分之二的部署工作，围绕这一实践展开：为什么选择此路线、产品与部署流程如何设计，以及这种「用产品做产品」的理念带来的效率变化。"
     },
     {
       "sourceId": "attentionvc-ai",
@@ -1886,7 +1886,7 @@
       "category": "tech",
       "meta": "@addyosmani · 408.3K 粉丝 · 175.5K 阅 · 509 赞 · 65 转",
       "source": "X 推文 (AttentionVC)",
-      "summary": "传统代码质量靠人工 code review，但编码 Agent 大量产出代码后，这套机制面临挑战。作者探讨 Agent 时代的代码质量评估：需要哪些新维度、如何让 AI 生成的代码同样可读、可测、可维护。"
+      "summary": "讨论智能体时代的代码质量评估：过去依赖人工代码评审来保证代码干净、高效、可测试，而面对智能体生成代码的新场景，评审标准、流程和工具都需要重构，并提出相关判断思路。"
     },
     {
       "sourceId": "attentionvc-ai",
@@ -1897,7 +1897,7 @@
       "category": "tech",
       "meta": "@nvidia · 2.6M 粉丝 · 59.5K 阅 · 548 赞 · 66 转",
       "source": "X 推文 (AttentionVC)",
-      "summary": "NVIDIA 发布轻量级开源模型 Nemotron 3.5 Lightning 和路由库 NeMo Switchyard，面向 Agentic AI 场景提升速度与效率，并让用户在边缘设备、PC、工作站、数据中心和云端拥有更大控制权。"
+      "summary": "NVIDIA 发布 Nemotron 3.5 Lightning 轻量开放模型与 NeMo Switchyard 路由库，主打更快、更智能、更高效的智能体 AI，可在边缘设备、PC、工作站、数据中心和云端灵活部署。"
     },
     {
       "sourceId": "attentionvc-ai",
@@ -1908,7 +1908,7 @@
       "category": "tech",
       "meta": "@GoogleCloudTech · 1.3M 粉丝 · 56.7K 阅 · 505 赞 · 76 转",
       "source": "X 推文 (AttentionVC)",
-      "summary": "Google 加入 Agent Plugins 开放标准：将 Agent Skills 及其依赖的 MCP servers 打包成一个可移植文件夹，任何兼容客户端都能直接加载。这是厂商中立的打包方案，可能改变 Agent 技能分发方式。"
+      "summary": "Google 推出 Agent Plugins，一个开放、厂商中立的规范，将 Agent Skills 与依赖的 MCP 服务器打包成单一可移植文件夹，任意兼容客户端可直接加载，意图统一智能体技能的分发与复用。"
     },
     {
       "sourceId": "attentionvc-ai",
@@ -1919,7 +1919,7 @@
       "category": "tech",
       "meta": "@TeslaLarry · 53.1K 粉丝 · 56.5K 阅 · 507 赞 · 54 转",
       "source": "X 推文 (AttentionVC)",
-      "summary": "作者借 8 月 4 日 SpaceX 财报电话会解读马斯克与黄仁勋的「理解」：马斯克不仅公开称赞 Nvidia 硬件，还宣布了某种独家承诺；多条线索表明双方关系比外界看到的更深。"
+      "summary": "作者从 SpaceX 财报电话会议后的动态中梳理出 Elon 与 Jensen 之间的「默契」：Elon 不仅盛赞 Nvidia 硬件，更作出独家承诺，这一表态背后或预示更深层的战略绑定。"
     },
     {
       "sourceId": "attentionvc-ai",
@@ -1930,7 +1930,7 @@
       "category": "tech",
       "meta": "@dexhorthy · 30.0K 粉丝 · 42.9K 阅 · 635 赞 · 31 转",
       "source": "X 推文 (AttentionVC)",
-      "summary": "提议用 /show-me 让编程 Agent 以紧凑视觉形式输出，代替大段文字。比 HTML 更轻量、更快，足以覆盖多数开发任务，解决当前编码 Agent 输出可读性差的问题。"
+      "summary": "提出 /show-me 方案：让编码智能体用紧凑的可视化图形代替大段文字输出，比 HTML 更轻、更快，足以覆盖多数开发任务，解决智能体对话「长文不可读」的痛点。"
     },
     {
       "sourceId": "attentionvc-ai",
@@ -1941,7 +1941,7 @@
       "category": "tech",
       "meta": "@mattyp · 44.5K 粉丝 · 33.5K 阅 · 651 赞 · 48 转",
       "source": "X 推文 (AttentionVC)",
-      "summary": "作者自述一直在追逐更好工具：笔记应用、工作流、优化，现在轮到个人 Agent。他提醒别掉进「总是造定制方案」的陷阱，反而牺牲真正的工作产出，并以此引入 Grok Bot 的入门体验。"
+      "summary": "作者自述一直在追逐更好的工具：笔记应用、工作流优化，再到个人代理，并以此介绍 Grok Bot 的入门体验，同时反思过度构建「定制」方案而牺牲实际产出的常见陷阱。"
     },
     {
       "sourceId": "attentionvc-ai",
@@ -1952,7 +1952,7 @@
       "category": "tech",
       "meta": "@ericzakariasson · 80.4K 粉丝 · 32.2K 阅 · 719 赞 · 52 转",
       "source": "X 推文 (AttentionVC)",
-      "summary": "Grok 4.6 发布后的实战指南。作者将其作为日常主力使用数周，覆盖编码和知识工作，还专门构建项目测试能力边界。文章总结了它在哪些场景真正顶得住、哪些地方仍是短板。"
+      "summary": "作者将 Grok 4.6 作为日常主力使用数周，覆盖编码和知识工作，并专门构建项目测试其能力边界，给出实际表现评估与使用指南，帮助读者快速判断这个版本是否值得升级。"
     },
     {
       "sourceId": "attentionvc-ai",
@@ -1963,7 +1963,7 @@
       "category": "tech",
       "meta": "@GoogleAIStudio · 191.7K 粉丝 · 30.7K 阅 · 566 赞 · 60 转",
       "source": "X 推文 (AttentionVC)",
-      "summary": "Google AI Studio 推出 Gemini 3.7 Flash，定位 Flash 系列中最强的编码与 Agent「工作马」模型，距上一代仅三个月。延续高性价比路线，面向大规模 coding 和 agent 任务。"
+      "summary": "Google AI Studio 发布 Gemini 3.7 Flash，号称 Flash 系列中最智能的编码与智能体主力模型，距离上一代仅三周，迭代节奏明显加快，主打高性价比的日常开发任务。"
     },
     {
       "sourceId": "bloomberg-markets",
@@ -1976,13 +1976,30 @@
     },
     {
       "sourceId": "bloomberg-markets",
+      "title": "Indonesia’s 2027 Budget Positions Miners, EV Makers as Winners",
+      "url": "https://www.bloomberg.com/news/articles/2026-08-14/indonesia-s-2027-budget-positions-miners-ev-makers-as-winners",
+      "excerpt": "Miners, electric vehicle manufacturers, and battery producers are set to win big under Indonesia’s state budget next year, analysts said. The gains will be driven by President Prabowo Subianto’s push to boost the commodity sector and slash reliance on costly imported fossil fuels.",
+      "publishedAt": "2026-08-14T11:33:18.000Z",
+      "category": "finance",
+      "source": "Bloomberg Markets"
+    },
+    {
+      "sourceId": "bloomberg-markets",
+      "title": "Airtel Mulls UK Listing of its Money Unit in Dollars",
+      "url": "https://www.bloomberg.com/news/articles/2026-08-14/airtel-mulls-uk-listing-of-its-money-unit-in-dollars",
+      "excerpt": "Airtel Africa Plc is considering having its mobile payments arm trade in US dollars when it lists it in London later this year, an arrangement that’s only been seen a handful of times.",
+      "publishedAt": "2026-08-14T11:25:00.000Z",
+      "category": "finance",
+      "source": "Bloomberg Markets"
+    },
+    {
+      "sourceId": "bloomberg-markets",
       "title": "Oil Spills Show Cost of Keeping Middle East Barrels Flowing",
       "url": "https://www.bloomberg.com/news/newsletters/2026-08-14/oil-spills-show-cost-of-keeping-middle-east-barrels-flowing",
       "excerpt": "As producers keep crude moving during the war, leaks across the Gulf are exposing the growing environmental toll.",
       "publishedAt": "2026-08-14T11:20:34.000Z",
       "category": "finance",
-      "source": "Bloomberg Markets",
-      "summary": "彭博社报道，在中东战事持续期间，产油国为维持原油出口，海湾地区石油泄漏事件不断，正在暴露愈发沉重的环境代价。"
+      "source": "Bloomberg Markets"
     },
     {
       "sourceId": "bloomberg-markets",
@@ -2125,24 +2142,6 @@
       "url": "https://www.bloomberg.com/news/videos/2026-08-14/ziemba-oil-market-overlooks-buffers-amid-long-conflict-video",
       "excerpt": "Oil held a decline as tankers laden with crude continued to exit the Persian Gulf, despite persistent threats and limited progress on a deal between Iran and Oman to reopen the Strait of Hormuz. Rachel Ziemba, Founder of Ziemba Insights spoke to Bloomberg’s Abeer Abu Omar on Horizons Middle East & A",
       "publishedAt": "2026-08-14T09:11:31.000Z",
-      "category": "finance",
-      "source": "Bloomberg Markets"
-    },
-    {
-      "sourceId": "bloomberg-markets",
-      "title": "BofA’s Hartnett Sees a Republican Senate Win Fueling Stock Rally",
-      "url": "https://www.bloomberg.com/news/articles/2026-08-14/bofa-s-hartnett-sees-a-republican-senate-win-fueling-stock-rally",
-      "excerpt": "Success in the midterm elections for the Republicans and the Texas gubernatorial contest would set up stocks for a further rally, according to Bank of America Corp. strategists.",
-      "publishedAt": "2026-08-14T09:09:20.000Z",
-      "category": "finance",
-      "source": "Bloomberg Markets"
-    },
-    {
-      "sourceId": "bloomberg-markets",
-      "title": "Europe's Robot Reality | Bloomberg Tech: Europe 08/14/2026",
-      "url": "https://www.bloomberg.com/news/videos/2026-08-14/europe-s-robot-reality-bloomberg-tech-europe-video",
-      "excerpt": "Are AI-powered robots finally leaving the lab to enter our homes and workplaces? In this episode of Bloomberg Tech: Europe, Tom Mackenzie explores the next generation of humanoid and autonomous robotics transforming industries across Europe. From advanced AI models to surgical micro-bots, discover h",
-      "publishedAt": "2026-08-14T09:08:04.000Z",
       "category": "finance",
       "source": "Bloomberg Markets"
     },
@@ -2333,8 +2332,7 @@
       "excerpt": "State-owned agency had threatened to shake up trade of nickel, thermal coal and palm oil",
       "publishedAt": "2026-08-14T11:15:57.000Z",
       "category": "finance",
-      "source": "Financial Times",
-      "summary": "据英国《金融时报》报道，印尼总统普拉博沃在市场压力下放弃大宗商品改革；此前国有机构曾威胁整顿镍、动力煤和棕榈油贸易。"
+      "source": "Financial Times"
     },
     {
       "sourceId": "ft-companies",
@@ -2343,8 +2341,7 @@
       "excerpt": "Vestas share price surge highlights wild swings in investor sentiment",
       "publishedAt": "2026-08-14T11:00:11.000Z",
       "category": "finance",
-      "source": "Financial Times",
-      "summary": "据英国《金融时报》报道，丹麦风电设备制造商维斯塔斯股价飙升，凸显出投资者情绪的剧烈波动，风电行业如同坐上“过山车”。"
+      "source": "Financial Times"
     },
     {
       "sourceId": "ft-companies",
@@ -2552,6 +2549,15 @@
       "publishedAt": "2026-08-13T18:03:32.000Z",
       "category": "finance",
       "source": "Financial Times"
+    },
+    {
+      "sourceId": "bbc-business",
+      "title": "Selena Gomez sued for alleged fraud over mental health company",
+      "url": "https://www.bbc.co.uk/news/articles/c8jn2811we4o?at_medium=RSS&at_campaign=rss",
+      "excerpt": "Investors say the actor and singer did not take an \"active role\" in the company as promised.",
+      "publishedAt": "2026-08-14T11:32:05.000Z",
+      "category": "finance",
+      "source": "BBC Business"
     },
     {
       "sourceId": "bbc-business",
@@ -2784,15 +2790,6 @@
       "url": "https://www.bbc.co.uk/news/articles/cy5d11g72ppo?at_medium=RSS&at_campaign=rss",
       "excerpt": "Cold calling is coming to an end in France, with one consumer group calling the ban a \"small revolution\".",
       "publishedAt": "2026-08-11T14:19:45.000Z",
-      "category": "finance",
-      "source": "BBC Business"
-    },
-    {
-      "sourceId": "bbc-business",
-      "title": "More than 10 firms pay up to $100,000 a month for fast access to Truth Social posts",
-      "url": "https://www.bbc.co.uk/news/articles/ce3q5nxpgk1o?at_medium=RSS&at_campaign=rss",
-      "excerpt": "Trump Media expects the controversial service, which launched this month, to provide a new revenue stream, as it posts a quarterly loss.",
-      "publishedAt": "2026-08-11T08:08:30.000Z",
       "category": "finance",
       "source": "BBC Business"
     },
@@ -3095,12 +3092,13 @@
     },
     {
       "sourceId": "cnbc-top",
-      "title": "Treasury yields rise as U.S. threatens Iran with more economic sanctions",
+      "title": "Treasury yields are little changed as U.S. threatens Iran with more economic sanctions",
       "url": "https://www.cnbc.com/2026/08/14/treasury-yields-us-iran-economic-sanctions.html",
-      "excerpt": "The yield on the 10-year U.S. Treasury note — the key benchmark for U.S. government borrowing — rose 2 basis points to 4.661%.",
-      "publishedAt": "2026-08-14T08:55:17.000Z",
+      "excerpt": "U.S. Treasury yields were relatively unchanged on Friday after the U.S. said its naval blockade of Iranian ports could continue \"indefinitely.\"",
+      "publishedAt": "2026-08-14T11:52:36.000Z",
       "category": "finance",
-      "source": "CNBC Top Stories"
+      "source": "CNBC Top Stories",
+      "summary": "美国国债收益率周五基本持平，此前美国表示对伊朗港口的海上封锁可能“无限期”持续，并威胁对伊朗实施更多经济制裁。"
     },
     {
       "sourceId": "cnbc-top",
@@ -3118,8 +3116,7 @@
       "excerpt": "Japan protested Vladimir Putin’s first visit to the disputed Kuril Islands, escalating tensions over territory claimed by both Tokyo and Moscow.",
       "publishedAt": "2026-08-14T11:13:00.000Z",
       "category": "finance",
-      "source": "CNBC Top Stories",
-      "summary": "据CNBC报道，日本首相高市早苗谴责俄罗斯总统普京首次访问争议岛屿千岛群岛，称“绝对不可接受”，日本政府已提出抗议，日俄紧张局势升级。"
+      "source": "CNBC Top Stories"
     },
     {
       "sourceId": "cnbc-top",
@@ -3128,17 +3125,17 @@
       "excerpt": "The push to build data centers has moved to lower Earth orbit, and insurers could be facing a new market with plenty of complexity.",
       "publishedAt": "2026-08-14T11:19:51.000Z",
       "category": "finance",
-      "source": "CNBC Top Stories",
-      "summary": "据CNBC报道，数据中心建设正延伸至近地轨道，这为保险业带来一个复杂的新市场，前提是保险公司能够合理评估相关风险。"
+      "source": "CNBC Top Stories"
     },
     {
       "sourceId": "cnbc-top",
       "title": "NATO aircraft shoot down drone over Latvia, which blames 'Russian electromagnetic warfare'",
       "url": "https://www.cnbc.com/2026/08/14/nato-drone-latvia.html",
       "excerpt": "NATO fighters shot down a foreign drone over Latvia as Finland briefly restricted airspace and sea areas amid heightened Baltic security concerns.",
-      "publishedAt": "2026-08-14T10:46:33.000Z",
+      "publishedAt": "2026-08-14T11:48:37.000Z",
       "category": "finance",
-      "source": "CNBC Top Stories"
+      "source": "CNBC Top Stories",
+      "summary": "北约战机在拉脱维亚上空击落一架外国无人机，拉脱维亚指责俄罗斯实施“电磁战”。芬兰一度限制空域和海域，波罗的海安全担忧加剧。"
     },
     {
       "sourceId": "cnbc-top",
@@ -3385,37 +3382,10 @@
     },
     {
       "sourceId": "yahoo-finance",
-      "title": "How credit card travel insurance works",
-      "url": "https://finance.yahoo.com/personal-finance/credit-cards/article/how-credit-card-travel-insurance-works-182443342.html",
-      "excerpt": "",
-      "publishedAt": "2024-08-09T18:24:43.000Z",
-      "category": "finance",
-      "source": "Yahoo Finance"
-    },
-    {
-      "sourceId": "yahoo-finance",
-      "title": "Online banks have some of the best savings account rates. Here's why.",
-      "url": "https://finance.yahoo.com/personal-finance/banking/article/best-online-bank-savings-rates-201445877.html",
-      "excerpt": "",
-      "publishedAt": "2024-08-22T20:14:45.000Z",
-      "category": "finance",
-      "source": "Yahoo Finance"
-    },
-    {
-      "sourceId": "yahoo-finance",
       "title": "Hyperion Profit More Than Triples to $31M, HYPE Treasury Reaches $133M",
       "url": "https://finance.yahoo.com/markets/crypto/articles/hyperion-profit-more-triples-31m-000100474.html",
       "excerpt": "",
       "publishedAt": "2026-08-13T00:01:00.000Z",
-      "category": "finance",
-      "source": "Yahoo Finance"
-    },
-    {
-      "sourceId": "yahoo-finance",
-      "title": "Jazz Pharma buys the only shot at a disease with no FDA treatment",
-      "url": "https://finance.yahoo.com/healthcare/articles/jazz-pharma-buys-only-shot-233700338.html",
-      "excerpt": "",
-      "publishedAt": "2026-08-12T23:37:00.000Z",
       "category": "finance",
       "source": "Yahoo Finance"
     },
@@ -3439,6 +3409,24 @@
     },
     {
       "sourceId": "yahoo-finance",
+      "title": "What Sezzle's Marketing Pullback Means for Growth, and Why an Insider Move Shouldn't Rattle Investors",
+      "url": "https://finance.yahoo.com/markets/stocks/articles/sezzles-marketing-pullback-means-growth-235722375.html",
+      "excerpt": "",
+      "publishedAt": "2026-08-12T23:57:22.000Z",
+      "category": "finance",
+      "source": "Yahoo Finance"
+    },
+    {
+      "sourceId": "yahoo-finance",
+      "title": "How credit card travel insurance works",
+      "url": "https://finance.yahoo.com/personal-finance/credit-cards/article/how-credit-card-travel-insurance-works-182443342.html",
+      "excerpt": "",
+      "publishedAt": "2024-08-09T18:24:43.000Z",
+      "category": "finance",
+      "source": "Yahoo Finance"
+    },
+    {
+      "sourceId": "yahoo-finance",
       "title": "Wrap Technologies, Inc. Q2 2026 Earnings Call Summary",
       "url": "https://finance.yahoo.com/markets/stocks/articles/wrap-technologies-inc-q2-2026-005128906.html",
       "excerpt": "",
@@ -3457,10 +3445,19 @@
     },
     {
       "sourceId": "yahoo-finance",
-      "title": "Cerebras Swings to Second-Quarter Loss, Lifts Full-Year Outlook",
-      "url": "https://www.wsj.com/business/earnings/cerebras-swings-to-second-quarter-loss-lifts-full-year-outlook-ed83550a?siteid=yhoof2&yptr=yahoo",
+      "title": "Online banks have some of the best savings account rates. Here's why.",
+      "url": "https://finance.yahoo.com/personal-finance/banking/article/best-online-bank-savings-rates-201445877.html",
       "excerpt": "",
-      "publishedAt": "2026-08-12T23:42:00.000Z",
+      "publishedAt": "2024-08-22T20:14:45.000Z",
+      "category": "finance",
+      "source": "Yahoo Finance"
+    },
+    {
+      "sourceId": "yahoo-finance",
+      "title": "Forget About Fetching Coffee. This Summer, the Interns Are Running the Show.",
+      "url": "https://www.wsj.com/lifestyle/careers/forget-about-fetching-coffee-this-summer-the-interns-are-running-the-show-d1b54f99?siteid=yhoof2&yptr=yahoo",
+      "excerpt": "",
+      "publishedAt": "2026-08-13T00:00:00.000Z",
       "category": "finance",
       "source": "Yahoo Finance"
     },
@@ -3484,6 +3481,60 @@
     },
     {
       "sourceId": "yahoo-finance",
+      "title": "Goldman Sachs Bets Again on Options ETFs With NEOS Deal",
+      "url": "https://finance.yahoo.com/markets/options/articles/goldman-sachs-bets-again-options-011827707.html",
+      "excerpt": "",
+      "publishedAt": "2026-08-13T01:18:27.000Z",
+      "category": "finance",
+      "source": "Yahoo Finance"
+    },
+    {
+      "sourceId": "yahoo-finance",
+      "title": "ESS Tech, Inc. Q2 2026 Earnings Call Summary",
+      "url": "https://finance.yahoo.com/markets/stocks/articles/ess-tech-inc-q2-2026-012028775.html",
+      "excerpt": "",
+      "publishedAt": "2026-08-13T01:20:28.000Z",
+      "category": "finance",
+      "source": "Yahoo Finance"
+    },
+    {
+      "sourceId": "yahoo-finance",
+      "title": "Chime (CHYM) Q2 2026 Earnings Call Transcript",
+      "url": "https://finance.yahoo.com/markets/stocks/articles/chime-chym-q2-2026-earnings-000149694.html",
+      "excerpt": "",
+      "publishedAt": "2026-08-13T00:01:49.000Z",
+      "category": "finance",
+      "source": "Yahoo Finance"
+    },
+    {
+      "sourceId": "yahoo-finance",
+      "title": "Intellinetics, Inc. Q2 2026 Earnings Call Summary",
+      "url": "https://finance.yahoo.com/markets/stocks/articles/intellinetics-inc-q2-2026-earnings-012127881.html",
+      "excerpt": "",
+      "publishedAt": "2026-08-13T01:21:27.000Z",
+      "category": "finance",
+      "source": "Yahoo Finance"
+    },
+    {
+      "sourceId": "yahoo-finance",
+      "title": "Inovio Pharmaceuticals, Inc. Q2 2026 Earnings Call Summary",
+      "url": "https://finance.yahoo.com/healthcare/articles/inovio-pharmaceuticals-inc-q2-2026-012145651.html",
+      "excerpt": "",
+      "publishedAt": "2026-08-13T01:21:45.000Z",
+      "category": "finance",
+      "source": "Yahoo Finance"
+    },
+    {
+      "sourceId": "yahoo-finance",
+      "title": "Kura Oncology, Inc. Q2 2026 Earnings Call Summary",
+      "url": "https://finance.yahoo.com/healthcare/articles/kura-oncology-inc-q2-2026-012647706.html",
+      "excerpt": "",
+      "publishedAt": "2026-08-13T01:26:47.000Z",
+      "category": "finance",
+      "source": "Yahoo Finance"
+    },
+    {
+      "sourceId": "yahoo-finance",
       "title": "Powerball jackpot climbs to $1 billion. What you'd pocket after taxes, and what to do with the rest.",
       "url": "https://finance.yahoo.com/personal-finance/banking/article/powerball-jackpot-climbs-to-1-billion-what-youd-pocket-after-taxes-and-what-to-do-with-the-rest-154401967.html",
       "excerpt": "",
@@ -3493,19 +3544,19 @@
     },
     {
       "sourceId": "yahoo-finance",
-      "title": "What is a credit card welcome offer?",
-      "url": "https://finance.yahoo.com/personal-finance/credit-cards/article/credit-card-welcome-offer-181029348.html",
+      "title": "StoneX (SNEX) Q3 2026 Earnings Call Transcript",
+      "url": "https://finance.yahoo.com/markets/stocks/articles/stonex-snex-q3-2026-earnings-000149491.html",
       "excerpt": "",
-      "publishedAt": "2025-09-17T18:10:29.000Z",
+      "publishedAt": "2026-08-13T00:01:49.000Z",
       "category": "finance",
       "source": "Yahoo Finance"
     },
     {
       "sourceId": "yahoo-finance",
-      "title": "Equinox Gold (EQX) Q2 2026 Earnings Call Transcript",
-      "url": "https://finance.yahoo.com/markets/stocks/articles/equinox-gold-eqx-q2-2026-234351032.html",
+      "title": "What is a credit card welcome offer?",
+      "url": "https://finance.yahoo.com/personal-finance/credit-cards/article/credit-card-welcome-offer-181029348.html",
       "excerpt": "",
-      "publishedAt": "2026-08-12T23:43:51.000Z",
+      "publishedAt": "2025-09-17T18:10:29.000Z",
       "category": "finance",
       "source": "Yahoo Finance"
     },
@@ -3538,19 +3589,19 @@
     },
     {
       "sourceId": "yahoo-finance",
-      "title": "What happens if you exceed your credit limit, and how to avoid doing so — even if you can pay it off",
-      "url": "https://finance.yahoo.com/personal-finance/credit-cards/article/what-happens-if-you-exceed-your-credit-limit-180743802.html",
+      "title": "Lightbridge (LTBR) Q2 2026 Earnings Call Transcript",
+      "url": "https://finance.yahoo.com/markets/stocks/articles/lightbridge-ltbr-q2-2026-earnings-000149279.html",
       "excerpt": "",
-      "publishedAt": "2024-09-30T18:07:43.000Z",
+      "publishedAt": "2026-08-13T00:01:49.000Z",
       "category": "finance",
       "source": "Yahoo Finance"
     },
     {
       "sourceId": "yahoo-finance",
-      "title": "Paycom (PAYC) Q2 2026 Earnings Call Transcript",
-      "url": "https://finance.yahoo.com/markets/stocks/articles/paycom-payc-q2-2026-earnings-234344499.html",
+      "title": "What happens if you exceed your credit limit, and how to avoid doing so — even if you can pay it off",
+      "url": "https://finance.yahoo.com/personal-finance/credit-cards/article/what-happens-if-you-exceed-your-credit-limit-180743802.html",
       "excerpt": "",
-      "publishedAt": "2026-08-12T23:43:44.000Z",
+      "publishedAt": "2024-09-30T18:07:43.000Z",
       "category": "finance",
       "source": "Yahoo Finance"
     },
@@ -3582,155 +3633,104 @@
       "source": "Yahoo Finance"
     },
     {
-      "sourceId": "yahoo-finance",
-      "title": "Best business credit cards for August 2026: Save money for your small business",
-      "url": "https://finance.yahoo.com/personal-finance/credit-cards/article/best-business-credit-cards-181831412.html",
-      "excerpt": "",
-      "publishedAt": "2024-09-11T23:26:44.000Z",
-      "category": "finance",
-      "source": "Yahoo Finance"
-    },
-    {
-      "sourceId": "yahoo-finance",
-      "title": "Fastly (FSLY) Q2 2026 Earnings Call Transcript",
-      "url": "https://finance.yahoo.com/markets/stocks/articles/fastly-fsly-q2-2026-earnings-234344325.html",
-      "excerpt": "",
-      "publishedAt": "2026-08-12T23:43:44.000Z",
-      "category": "finance",
-      "source": "Yahoo Finance"
-    },
-    {
-      "sourceId": "yahoo-finance",
-      "title": "Inflation pulls back slightly in July. Is that good news for mortgage rates?",
-      "url": "https://finance.yahoo.com/personal-finance/mortgages/article/inflation-pulls-back-slightly-in-july-is-that-good-news-for-mortgage-rates-173028177.html",
-      "excerpt": "",
-      "publishedAt": "2024-09-06T17:30:28.000Z",
-      "category": "finance",
-      "source": "Yahoo Finance"
-    },
-    {
-      "sourceId": "yahoo-finance",
-      "title": "What is inflation, and how does it affect you?",
-      "url": "https://finance.yahoo.com/personal-finance/banking/article/inflation-definition-195527231.html",
-      "excerpt": "",
-      "publishedAt": "2024-09-06T19:55:27.000Z",
-      "category": "finance",
-      "source": "Yahoo Finance"
-    },
-    {
-      "sourceId": "yahoo-finance",
-      "title": "Protective puts: How to hedge a portfolio with options",
-      "url": "https://finance.yahoo.com/personal-finance/investing/article/protective-put-133000675.html",
-      "excerpt": "",
-      "publishedAt": "2026-08-12T13:30:00.000Z",
-      "category": "finance",
-      "source": "Yahoo Finance"
-    },
-    {
-      "sourceId": "yahoo-finance",
-      "title": "What is a covered call? How this options income strategy works.",
-      "url": "https://finance.yahoo.com/personal-finance/investing/article/what-is-a-covered-call-130000003.html",
-      "excerpt": "",
-      "publishedAt": "2026-08-12T13:00:00.000Z",
-      "category": "finance",
-      "source": "Yahoo Finance"
-    },
-    {
       "sourceId": "investing-news",
-      "title": "BofA cuts WeRide stock price target to $10.70 on valuation",
-      "url": "https://www.investing.com/news/analyst-ratings/bofa-cuts-weride-stock-price-target-to-1070-on-valuation-93CH-4860342",
+      "title": "B.Riley cuts Nuscale Power stock price target on valuation reset",
+      "url": "https://www.investing.com/news/analyst-ratings/briley-cuts-nuscale-power-stock-price-target-on-valuation-reset-93CH-4860482",
       "excerpt": "",
-      "publishedAt": "2026-08-14T11:02:53.000Z",
+      "publishedAt": "2026-08-14T11:45:16.000Z",
       "category": "finance",
       "source": "Investing.com News",
-      "summary": "据Investing.com报道，美国银行旗下美银证券基于估值考量，将中国自动驾驶公司文远知行（WeRide）的股票目标价格下调至10.70美元。"
+      "summary": "投行B.Riley以估值重置为由，下调NuScale Power股票目标价。"
     },
     {
       "sourceId": "investing-news",
-      "title": "InvestingPro’s Fair Value spotted UTI’s 46% drop before it happened",
-      "url": "https://www.investing.com/news/investment-ideas/investingpros-fair-value-spotted-utis-46-drop-before-it-happened-93CH-4860338",
+      "title": "B.Riley cuts Blaize stock price target on lower revenue guidance",
+      "url": "https://www.investing.com/news/analyst-ratings/briley-cuts-blaize-stock-price-target-on-lower-revenue-guidance-93CH-4860481",
       "excerpt": "",
-      "publishedAt": "2026-08-14T11:01:55.000Z",
+      "publishedAt": "2026-08-14T11:45:11.000Z",
       "category": "finance",
       "source": "Investing.com News",
-      "summary": "据Investing.com报道，其旗下InvestingPro的公允价值工具在UTI公司股价下跌46%之前，便已提前识别这一风险。"
+      "summary": "投行B.Riley以营收指引下调为由，下调Blaize股票目标价。"
     },
     {
       "sourceId": "investing-news",
-      "title": "Matthew Ray, Heritage Financial EVP, sells $111,129 in stock",
-      "url": "https://www.investing.com/news/insider-trading-news/matthew-ray-heritage-financial-evp-sells-111129-in-stock-93CH-4860321",
+      "title": "Wedbush cuts Globant stock rating on AI headwinds, lowers target",
+      "url": "https://www.investing.com/news/analyst-ratings/wedbush-cuts-globant-stock-rating-on-ai-headwinds-lowers-target-93CH-4860480",
       "excerpt": "",
-      "publishedAt": "2026-08-14T11:00:58.000Z",
+      "publishedAt": "2026-08-14T11:43:02.000Z",
       "category": "finance",
       "source": "Investing.com News",
-      "summary": "据Investing.com报道，Heritage Financial执行副总裁马修·雷出售了价值111,129美元的公司股票。"
+      "summary": "Wedbush以人工智能逆风为由，下调Globant股票评级并下调目标价。"
     },
     {
       "sourceId": "investing-news",
-      "title": "Brigade Enterprises Q1 FY27 slides: margins surge despite revenue miss",
-      "url": "https://www.investing.com/news/company-news/brigade-enterprises-q1-fy27-slides-margins-surge-despite-revenue-miss-93CH-4860322",
+      "title": "B.Riley cuts Eos Energy stock price target on tighter revenue outlook",
+      "url": "https://www.investing.com/news/analyst-ratings/briley-cuts-eos-energy-stock-price-target-on-tighter-revenue-outlook-93CH-4860479",
       "excerpt": "",
-      "publishedAt": "2026-08-14T11:00:55.000Z",
+      "publishedAt": "2026-08-14T11:43:01.000Z",
       "category": "finance",
       "source": "Investing.com News",
-      "summary": "据Investing.com报道，印度房地产公司Brigade Enterprises 2027财年第一季度营收未达预期，但利润率大幅增长，当日股价下滑。"
+      "summary": "投行B.Riley以营收前景收紧为由，下调Eos Energy股票目标价。"
     },
     {
       "sourceId": "investing-news",
-      "title": "Cooler inflation data may force Warsh’s divided Fed to hold the line on rates",
-      "url": "https://www.investing.com/news/economy-news/cooler-inflation-data-may-force-warshs-divided-fed-to-hold-the-line-on-rates-4860158",
+      "title": "Why is Birkenstock stock sliding today?",
+      "url": "https://www.investing.com/news/stock-market-news/why-is-birkenstock-stock-sliding-today-93CH-4860475",
       "excerpt": "",
-      "publishedAt": "2026-08-14T11:00:29.000Z",
+      "publishedAt": "2026-08-14T11:38:44.000Z",
       "category": "finance",
       "source": "Investing.com News",
-      "summary": "据Investing.com报道，通胀数据降温可能迫使美联储主席沃什领导且内部存在分歧的联邦公开市场委员会维持现有利率水平不变。"
+      "summary": "Birkenstock股票今日下跌，具体原因未在报道中说明。"
     },
     {
       "sourceId": "investing-news",
-      "title": "Should you chase this mini rally in gold? Citi weighs in",
-      "url": "https://www.investing.com/news/commodities-news/should-you-chase-this-mini-rally-in-gold-citi-weighs-in-4860317",
+      "title": "H.C. Wainwright reiterates Pharvaris stock rating on regulatory progress",
+      "url": "https://www.investing.com/news/analyst-ratings/hc-wainwright-reiterates-pharvaris-stock-rating-on-regulatory-progress-93CH-4860473",
       "excerpt": "",
-      "publishedAt": "2026-08-14T10:59:14.000Z",
+      "publishedAt": "2026-08-14T11:36:58.000Z",
       "category": "finance",
       "source": "Investing.com News",
-      "summary": "据Investing.com报道，针对当前黄金价格的小幅反弹，花旗发表观点，分析投资者是否应当追涨。"
+      "summary": "H.C. Wainwright重申Pharvaris股票评级，理由是监管进展。"
     },
     {
       "sourceId": "investing-news",
-      "title": "Earnings call transcript: Romgaz posts higher H1 2026 profit as Neptun Deep advances",
-      "url": "https://www.investing.com/news/transcripts/earnings-call-transcript-romgaz-posts-higher-h1-2026-profit-as-neptun-deep-advances-93CH-4860314",
+      "title": "Earnings call transcript: Nagarro H1 2026 growth slows as margins improve",
+      "url": "https://www.investing.com/news/transcripts/earnings-call-transcript-nagarro-h1-2026-growth-slows-as-margins-improve-93CH-4860472",
       "excerpt": "",
-      "publishedAt": "2026-08-14T10:57:58.000Z",
+      "publishedAt": "2026-08-14T11:36:53.000Z",
       "category": "finance",
       "source": "Investing.com News",
-      "summary": "据Investing.com公布的财报电话会议记录，罗马尼亚天然气公司Romgaz 2026年上半年利润增长，同时Neptun Deep项目取得进展。"
+      "summary": "根据Nagarro 2026年上半年财报电话会议记录，公司营收增长放缓，但利润率有所改善。"
     },
     {
       "sourceId": "investing-news",
-      "title": "Earnings call transcript: Bora Pharmaceuticals posts Q2 2026 EPS beat, revenue miss",
-      "url": "https://www.investing.com/news/transcripts/earnings-call-transcript-bora-pharmaceuticals-posts-q2-2026-eps-beat-revenue-miss-93CH-4860313",
+      "title": "H.C. Wainwright reiterates Buy on 4D Molecular stock, $36 target",
+      "url": "https://www.investing.com/news/analyst-ratings/hc-wainwright-reiterates-buy-on-4d-molecular-stock-36-target-93CH-4860471",
       "excerpt": "",
-      "publishedAt": "2026-08-14T10:57:02.000Z",
+      "publishedAt": "2026-08-14T11:36:50.000Z",
       "category": "finance",
-      "source": "Investing.com News"
+      "source": "Investing.com News",
+      "summary": "H.C. Wainwright重申对4D Molecular股票的“买入”评级，目标价为36美元。"
     },
     {
       "sourceId": "investing-news",
-      "title": "Raymond James initiates SpyGlass Pharma stock coverage with outperform rating",
-      "url": "https://www.investing.com/news/analyst-ratings/raymond-james-initiates-spyglass-pharma-stock-coverage-with-outperform-rating-93CH-4860312",
+      "title": "H.C. Wainwright reiterates Cytokinetics stock rating on patent suit",
+      "url": "https://www.investing.com/news/analyst-ratings/hc-wainwright-reiterates-cytokinetics-stock-rating-on-patent-suit-93CH-4860470",
       "excerpt": "",
-      "publishedAt": "2026-08-14T10:56:57.000Z",
+      "publishedAt": "2026-08-14T11:36:48.000Z",
       "category": "finance",
-      "source": "Investing.com News"
+      "source": "Investing.com News",
+      "summary": "H.C. Wainwright重申Cytokinetics股票评级，基于专利诉讼进展。"
     },
     {
       "sourceId": "investing-news",
-      "title": "BTIG raises Braze stock price target to $35 on bookings momentum",
-      "url": "https://www.investing.com/news/analyst-ratings/btig-raises-braze-stock-price-target-to-35-on-bookings-momentum-93CH-4860311",
+      "title": "H.C. Wainwright reiterates CorMedix stock rating on strong quarter",
+      "url": "https://www.investing.com/news/analyst-ratings/hc-wainwright-reiterates-cormedix-stock-rating-on-strong-quarter-93CH-4860469",
       "excerpt": "",
-      "publishedAt": "2026-08-14T10:56:56.000Z",
+      "publishedAt": "2026-08-14T11:36:45.000Z",
       "category": "finance",
-      "source": "Investing.com News"
+      "source": "Investing.com News",
+      "summary": "H.C. Wainwright重申对CorMedix的股票评级，因其季度表现强劲。"
     },
     {
       "sourceId": "people-finance",
@@ -4248,28 +4248,6 @@
       "title": "Next Day Disclosure Return (ZERO2IPO)",
       "url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0814/2026081401082.pdf",
       "excerpt": "港交所公告: Next Day Disclosure Return | 股票: 01945 (ZERO2IPO) | 时间: 14/08/2026 17:59 | 格式: PDF | 大小: 87KB",
-      "publishedAt": "2026-08-14T00:00:00.000Z",
-      "category": "gd-ipo",
-      "subcategory": "news",
-      "summary": ""
-    },
-    {
-      "sourceId": "gd-local-scraper",
-      "source": "广东本地爬虫",
-      "title": "China Gold International Resources Management Approves Jiama Development Plan -\"Super Pit\" Development Plan Targets Processing Capacity of Approximately 160,000 tpd (CHINAGOLDINTL)",
-      "url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0814/2026081400065.pdf",
-      "excerpt": "港交所公告: China Gold International Resources Management Approves Jiama Development Plan -\"Super Pit\" Development Plan Targets Processing Capacity of Approximately 160,000 tpd | 股票: 02099 (CHINAGOLDINTL) | 时间: 14/08/2026 07:01 | 格式: PDF | 大小: 368KB",
-      "publishedAt": "2026-08-14T00:00:00.000Z",
-      "category": "gd-ipo",
-      "subcategory": "news",
-      "summary": ""
-    },
-    {
-      "sourceId": "gd-local-scraper",
-      "source": "广东本地爬虫",
-      "title": "China Gold International Resources Reports 2026 Second Quarter and First Half Results - A New Record High in Revenue and Net Profit (CHINAGOLDINTL)",
-      "url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0814/2026081400063.pdf",
-      "excerpt": "港交所公告: China Gold International Resources Reports 2026 Second Quarter and First Half Results - A New Record High in Revenue and Net Profit | 股票: 02099 (CHINAGOLDINTL) | 时间: 14/08/2026 07:01 | 格式: PDF | 大小: 172KB",
       "publishedAt": "2026-08-14T00:00:00.000Z",
       "category": "gd-ipo",
       "subcategory": "news",
