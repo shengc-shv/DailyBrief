@@ -259,6 +259,7 @@ async function main() {
         // 跳过已存在的（按 URL 去重）
         const exists = articles.some(a => a.url === item.url);
         if (exists) continue;
+        console.log(`[daily] 爬虫数据第一条 category: ${articles[articles.length - 1]?.category}`);
         articles.push({
           sourceId: 'gd-local-scraper',
           source: '广东本地爬虫',
@@ -272,6 +273,7 @@ async function main() {
         count++;
       }
       console.log(`[daily] ✅ 加载爬虫数据 ${count} 条（跳过 ${items.length - count} 条重复）`);
+      console.log(`[daily] 爬虫数据第一条 category: ${articles[articles.length - 1]?.category}`);
     } catch (err) {
       console.warn(`[daily] ⚠️ 加载爬虫数据失败: ${err.message}`);
     }
