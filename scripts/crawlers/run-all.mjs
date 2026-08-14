@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { HKEXCrawler } from './sources/hkex-ipo.mjs';
+import { HKEXCrawler } from './sources/hkex-ipo.mjs';  // 只导入港交所
 
 const OUTPUT_PATH = path.resolve(process.cwd(), 'data/crawled-articles.json');
 
@@ -8,8 +8,8 @@ async function main() {
   console.log('🚀 开始运行爬虫...\n');
   
   const crawlers = [
-    new GdjrgovCrawler(),
-    // 后续可继续添加: new NanfangCrawler(), new JinyangCrawler() ...
+    new HKEXCrawler(),
+    // 后续可继续添加: new SSEIPOCrawler(), new SZSEIPOCrawler() ...
   ];
 
   const allResults = [];
