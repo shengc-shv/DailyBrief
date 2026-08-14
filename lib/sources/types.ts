@@ -1,4 +1,4 @@
-export type Category = "tech" | "finance" | "politics";
+export type Category = "tech" | "finance" | "politics" ｜ 'gd-ipo';
 export type SourceType = "rss" | "api" | "scrape";
 
 export interface SourceDef {
