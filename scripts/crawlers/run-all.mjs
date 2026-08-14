@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { GdjrgovCrawler } from './sources/gdjr-gov.mjs';
+import { HKEXCrawler } from './sources/hkex-ipo.mjs';
 
 const OUTPUT_PATH = path.resolve(process.cwd(), 'data/crawled-articles.json');
 
