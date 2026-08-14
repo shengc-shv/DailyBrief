@@ -205,7 +205,8 @@ jobs:
             echo "gh-pages doesn't exist yet — first run"
           fi
 
-      - name: Generate today's report
+
+      - name: Generate today's report -test
         env:
           LLM_BACKEND: ${{ vars.LLM_BACKEND || 'anthropic' }}
           LLM_MODEL: ${{ vars.LLM_MODEL }}
