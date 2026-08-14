@@ -268,6 +268,7 @@ async function main() {
           excerpt: item.excerpt || '',
           publishedAt: item.publishedAt ? new Date(item.publishedAt) : new Date(),
           category: 'gd-ipo',
+          subcategory: 'news',
           summary: item.summary || '',
         });
         count++;
