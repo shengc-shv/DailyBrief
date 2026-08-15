@@ -1,4 +1,5 @@
 import { BaseCrawler } from '../base-crawler.mjs';
+import iconv from 'iconv-lite';
 
 /**
  * 同花顺 - 新股预披露爬虫
@@ -17,6 +18,55 @@ export class TonghuashunIPOCrawler extends BaseCrawler {
     return [
       'https://data.10jqka.com.cn/ipo/xgyp/',
     ];
+  }
+
+  // ⭐ 重写 run 方法，使用 iconv-lite 解码 GBK
+  async run() {
+    console.log(`[${this.name}] 开始抓取...`);
+    const items = await this.getUrls();
+    let total = 0;
+
+    for (const item of items) {
+      const targetUrl = typeof item === 'string' ? item : item.url;
+      const method = item.method || 'GET';
+      const headers = item.headers || { 'User-Agent': this.userAgent };
+
+      try {
+        const fetchOptions = {
+          method: method,
+          headers: headers,
+          signal: AbortSignal.timeout(this.timeout),
+        };
+
+        if (method === 'POST' && item.body) {
+          fetchOptions.body = item.body;
+        }
+
+        const resp = await fetch(targetUrl, fetchOptions);
+        if (!resp.ok) {
+          console.warn(`[${this.name}] ${targetUrl} 返回 ${resp.status}，跳过`);
+          continue;
+        }
+
+        // ⭐ 获取原始 buffer，用 iconv-lite 解码为 UTF-8
+        const buffer = await resp.arrayBuffer();
+        const html = iconv.decode(Buffer.from(buffer), 'GBK');
+
+        const articles = await this.parseArticle(html, targetUrl);
+
+        // 直接使用全部数据，由子类 parseArticle 自行决定过滤
+        this.results.push(...articles);
+        total += articles.length;
+        console.log(`[${this.name}] 从 ${targetUrl} 抓取 ${articles.length} 条`);
+      } catch (err) {
+        console.warn(`[${this.name}] ${targetUrl} 抓取失败: ${err.message}`);
+      }
+
+      await new Promise(r => setTimeout(r, 1000 + Math.random() * 2000));
+    }
+
+    console.log(`[${this.name}] 完成，共 ${this.results.length} 条`);
+    return this.results;
   }
 
   async parseArticle(html, url) {
@@ -46,14 +96,12 @@ export class TonghuashunIPOCrawler extends BaseCrawler {
 
       console.log(`[${this.name}] 共找到 ${trMatches.length} 行数据`);
 
-      // ⭐ 调试：打印前几行的原始 HTML
-      console.log(`[${this.name}] 第一行原始HTML片段:`, trMatches[0]?.slice(0, 200));
-
       for (const trContent of trMatches) {
         const tdMatches = trContent.match(/<td[^>]*>([\s\S]*?)<\/td>/gi);
         if (!tdMatches || tdMatches.length < 9) continue;
 
         const tds = tdMatches.map(td => {
+          // 移除 HTML 标签
           let text = td.replace(/<a[^>]*>([\s\S]*?)<\/a>/gi, '$1');
           text = text.replace(/<[^>]+>/g, '');
           text = text.replace(/\s+/g, ' ').trim();
@@ -71,14 +119,11 @@ export class TonghuashunIPOCrawler extends BaseCrawler {
         const estimatedShares = tds[6] || '';
         const reportLink = tds[8] || '';
 
-        // ⭐ 调试：打印前几条的 stockName
-        if (articles.length < 5) {
-          console.log(`[${this.name}] [调试] 提取到的公司名: "${stockName}"`);
-        }
-
+        // ⭐ 地区过滤
         const isRegion = regionKeywords.some(kw => stockName.includes(kw));
         if (!isRegion) continue;
 
+        // 解析日期
         let pubDate = disclosureDate;
         if (pubDate) {
           const dateMatch = pubDate.match(/(\d{4}-\d{2}-\d{2})/);
@@ -89,7 +134,7 @@ export class TonghuashunIPOCrawler extends BaseCrawler {
           pubDate = new Date().toISOString().slice(0, 10);
         }
 
-        // 注释掉日期过滤，先看能不能匹配地区
+        // 日期过滤（暂时注释掉，先验证编码）
         // const itemDate = new Date(pubDate);
         // if (itemDate < thirtyDaysAgo) continue;
 
