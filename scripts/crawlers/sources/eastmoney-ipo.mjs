@@ -44,6 +44,9 @@ export class EastMoneyIPOCrawler extends BaseCrawler {
    */
   async parseArticle(responseText, url) {
     const articles = [];
+    // 计算 30 天前的时间戳
+    const thirtyDaysAgo = new Date();
+    thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
 
     try {
       const data = JSON.parse(responseText);
@@ -69,6 +72,23 @@ export class EastMoneyIPOCrawler extends BaseCrawler {
         // 提取公司代码（用于构造详情链接）
         const orgCode = item.ORG_CODE || '';
 
+        // 解析日期
+        let pubDate = recordDate;
+        if (pubDate) {
+          const dateMatch = pubDate.match(/(\d{4}-\d{2}-\d{2})/);
+          if (dateMatch) {
+            pubDate = dateMatch[1];
+          }
+        } else {
+          pubDate = new Date().toISOString().slice(0, 10);
+        }
+
+        // ⭐ 过滤 30 天前的数据
+        const itemDate = new Date(pubDate);
+        if (itemDate < thirtyDaysAgo) {
+          continue;  // 跳过 30 天前的数据
+        }
+
         // 筛选广东地区企业（通过派出机构判断）
         const isGuangdong = /广东|深圳/.test(dispatchOrg);
         
@@ -91,17 +111,6 @@ export class EastMoneyIPOCrawler extends BaseCrawler {
           ? `https://data.eastmoney.com/xg/ipo/fd/${orgCode}.html`
           : url;
 
-        // 解析日期
-        let pubDate = recordDate;
-        if (pubDate) {
-          const dateMatch = pubDate.match(/(\d{4}-\d{2}-\d{2})/);
-          if (dateMatch) {
-            pubDate = dateMatch[1];
-          }
-        } else {
-          pubDate = new Date().toISOString().slice(0, 10);
-        }
-
         articles.push({
           title: title,
           url: detailUrl,
@@ -110,7 +119,7 @@ export class EastMoneyIPOCrawler extends BaseCrawler {
         });
       }
 
-      console.log(`[${this.name}] 匹配到 ${articles.length} 家广东辅导企业`);
+      console.log(`[${this.name}] 匹配到 ${articles.length} 家广东辅导企业（最近30天）`);
 
     } catch (err) {
       console.error(`[${this.name}] 解析API失败:`, err.message);
