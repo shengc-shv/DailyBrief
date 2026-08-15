@@ -292,7 +292,21 @@ async function main() {
   await enrichPolitics(articles);
   await enrichAiNews(articles);
   await enrichXViral(articles);
-
+  
+  // ===== 为 gd-ipo 数据生成中文摘要（新增）=====
+  const gdIpoArticles = articles.filter(a => a.category === 'gd-ipo');
+  if (gdIpoArticles.length > 0) {
+    console.log(`[daily] enriching ${gdIpoArticles.length} gd-ipo items with ${REPORT_LOCALE} summaries…`);
+    const t0 = Date.now();
+    const summaries = await enrichFinanceNewsSummaries(gdIpoArticles);
+    for (const a of gdIpoArticles) {
+      const s = summaries.get(a.url);
+      if (s) a.summary = s;
+    }
+    console.log(
+      `[daily] enrichment done in ${((Date.now() - t0) / 1000).toFixed(1)}s, matched ${summaries.size}/${gdIpoArticles.length}`,
+    );
+  }
   // Trading signals: Yahoo fetch + indicators + commentary. Non-fatal —
   // if it errors, we still ship the news digest.
   let trading: TradingSection | null = null;
