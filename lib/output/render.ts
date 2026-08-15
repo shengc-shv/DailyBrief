@@ -280,15 +280,25 @@ export function groupRaw(
     catCount[a.category] = (catCount[a.category] || 0) + 1;
   }
   console.log('[groupRaw] 文章分类统计:', JSON.stringify(catCount));
+  console.log('[groupRaw] registry 中的 sourceId 列表:', registry.map(s => s.id));
+  console.log('[groupRaw] registry 中是否有 gd-local-scraper:', registry.some(s => s.id === 'gd-local-scraper'));
   
   const subcatOf = new Map<string, string | undefined>();
   for (const s of registry) subcatOf.set(s.id, s.subcategory);
   // Drop articles from sources that have since been disabled — important
   // when scripts/render.ts re-renders against a stale sidecar that still
   // contains the disabled sources' fetched data.
-  const enabledIds = new Set(
-    registry.filter((s) => s.enabled !== false).map((s) => s.id),
-  );
+  // 改为
+  const allSourceIds = new Set(loadAllSources().map((s) => s.id));
+  // const enabledIds = new Set(
+  //   registry.filter((s) => s.enabled !== false).map((s) => s.id),
+  // );
+  // 但我们需要保留所有源，不管是否启用，以便 gd-local-scraper 的数据能通过
+  // 所以最好直接用 allSourceIds
+  const enabledIds = allSourceIds;
+
+  console.log('[groupRaw] enabledIds 包含的 sourceId 列表:', Array.from(enabledIds));
+  console.log('[groupRaw] gd-local-scraper 是否在 enabledIds 中:', enabledIds.has('gd-local-scraper'));
 
   type Bucket = { sourceName: string; items: ArticleInput[] };
   const buckets: Record<Category, Map<string, Bucket>> = {
@@ -313,6 +323,19 @@ export function groupRaw(
   }
 
   for (const a of articles) {
+    // ⭐ 日志3：遍历 articles 时
+     if (a.category === 'gd-ipo') {
+      console.log(`[groupRaw] 处理 gd-ipo 数据: sourceId=${a.sourceId}, title=${a.title?.slice(0, 30)}`);
+      console.log(`[groupRaw]   - enabledIds.has(a.sourceId): ${enabledIds.has(a.sourceId)}`);
+    }
+
+    if (!enabledIds.has(a.sourceId)) {
+      if (a.category === 'gd-ipo') {
+        console.log(`[groupRaw] ❌ gd-ipo 数据被过滤: sourceId=${a.sourceId} 不在 enabledIds 中`);
+      }
+      continue;
+    }
+    // 日志3：结束
     if (!enabledIds.has(a.sourceId)) continue;
     if (a.category === "politics" && isSportsArticle(a.title)) continue;
     if (
@@ -326,7 +349,9 @@ export function groupRaw(
       b = { sourceName: a.source, items: [] };
       map.set(a.sourceId, b);
     }
+    
     b.items.push(a);
+    console.log('[groupRaw] buckets[gd-ipo] size after filling:', buckets['gd-ipo']?.size);
   }
 
   for (const cat of Object.keys(buckets) as Category[]) {
