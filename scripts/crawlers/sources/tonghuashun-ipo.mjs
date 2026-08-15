@@ -96,7 +96,7 @@ export class TonghuashunIPOCrawler extends BaseCrawler {
 
         // 过滤 30 天前的数据
         const itemDate = new Date(pubDate);
-        if (itemDate < thirtyDaysAgo) continue;
+        //if (itemDate < thirtyDaysAgo) continue;
 
         // 构建标题
         let title = `${stockName}`;
