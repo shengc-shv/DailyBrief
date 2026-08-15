@@ -132,6 +132,7 @@ async function main() {
   articles.slice(0, 10).forEach((a, i) => {
     console.log(`  ${i + 1}. [${a.category}] ${a.title?.slice(0, 50)}`);
   });
+  process.exit(0);
 }
 
 main().catch((e) => {
