@@ -3,6 +3,9 @@ import path from 'node:path';
 import { HKEXCrawler } from './sources/hkex-ipo.mjs';  // 只导入港交所
 import { SSEAPICrawler } from './sources/sse-api.mjs';
 import { EastMoneyIPOCrawler } from './sources/eastmoney-ipo.mjs';
+import { SZSEAPICrawler } from './sources/szse-api-crawler.mjs';
+import { SZSEAPICrawler } from './sources/bse-api.mjs';
+import { SZSEAPICrawler } from './sources/cninfo-crawler.mjs';
 const OUTPUT_PATH = path.resolve(process.cwd(), 'data/crawled-articles.json');
 
 async function main() {
