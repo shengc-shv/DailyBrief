@@ -1269,10 +1269,10 @@ export function renderHtml(
   <section class="panel active" data-panel="tech">
     ${renderRawCategoryPanel("tech", techMainSubs)}
   </section>
+  ${trading ? `<section class="panel" data-panel="trading">${renderTradingPanel(trading)}</section>` : ""}
   <section class="panel" data-panel="finance">
     ${renderRawCategoryPanel("finance", raw.finance)}
   </section>
-  ${trading ? `<section class="panel" data-panel="trading">${renderTradingPanel(trading)}</section>` : ""}
   <section class="panel" data-panel="gd-ipo">
     ${renderRawCategoryPanel("gd-ipo", raw['gd-ipo'] || [])}
   </section>
