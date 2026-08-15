@@ -208,7 +208,7 @@
     "category": "tech",
     "subcategory": "ai-news",
     "enabled": true,
-    "locales": ["en"],
+    "locales": ["zh", "en"],
     "note": "AI x 商业 x 投资的深度长文，兼顾 AI 与金融双主题。"
   },
   {
@@ -219,19 +219,8 @@
     "category": "tech",
     "subcategory": "ai-news",
     "enabled": true,
-    "locales": ["en"],
+    "locales": ["zh", "en"],
     "note": "独立开发者视角的 AI 工具评测与 LLM 进展，更新极高频。"
-  },
-  {
-    "id": "infoq-cn",
-    "name": "InfoQ 中文",
-    "type": "rss",
-    "url": "https://www.infoq.cn/feed",
-    "category": "tech",
-    "subcategory": "ai-news",
-    "enabled": true,
-    "locales": ["zh"],
-    "note": "已验证可用。AI 工程实践、大模型落地、开发者生态新闻。"
   },
    {
     "id": "guardian-business",
@@ -241,7 +230,7 @@
     "category": "finance",
     "subcategory": "news",
     "enabled": true,
-    "locales": ["en"],
+    "locales": ["zh", "en"],
     "note": "已验证可用。英美市场与经济新闻，无付费墙。"
   },
   {
@@ -252,7 +241,7 @@
     "category": "finance",
     "subcategory": "macro",
     "enabled": true,
-    "locales": ["en"],
+    "locales": ["zh", "en"],
     "note": "已验证可用。美联储全部公告（FOMC 声明、纪要、监管），宏观信号第一手来源。"
   },
   {
@@ -274,7 +263,7 @@
     "category": "gd-ipo",
     "subcategory": "news",
     "enabled": true,
-    "locales": ["en"],
+    "locales": ["zh", "en"],
     "note": "已验证可用。美股 IPO 日历 JSON：含 priced（已定价）/upcoming（待上市）/withdrawn（撤回）三组，含公司名、代码、交易所、发行价、募资额、日期，中概股也在内。注意：请求需带浏览器 User-Agent；不传日期参数取近期数据；如需指定日期可尝试 ?date=YYYY-MM-DD（对当月有效）。"
   }, 
   {
@@ -285,7 +274,7 @@
     "category": "gd-ipo",
     "subcategory": "news",
     "enabled": true,
-    "locales": ["en"],
+    "locales": ["zh", "en"],
     "note": "已验证可用。全球私募市场/融资轮次/IPO 与上市动态报道，更新频繁（每小时）。"
   },
   {
@@ -295,8 +284,8 @@
     "url": "https://efts.sec.gov/LATEST/search-index?q=F-1",
     "category": "gd-ipo",
     "subcategory": "news",
-    "enabled": false,
-    "locales": ["en"],
+    "enabled": true,
+    "locales": ["zh", "en"],
     "note": "同上，聚焦中国发行人 F-1 注册声明；建议与 S-1 源二选一或并存，注意过滤非中概 F-1。"
   }
 ]
