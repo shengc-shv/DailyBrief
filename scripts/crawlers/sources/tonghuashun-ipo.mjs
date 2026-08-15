@@ -4,7 +4,7 @@ import { BaseCrawler } from '../base-crawler.mjs';
  * 同花顺 - 新股预披露爬虫
  * 数据来源: https://data.10jqka.com.cn/ipo/xgyp/
  *
- * 过滤逻辑：只保留广东地区的新股预披露（数据本身已是 IPO 相关）
+ * 过滤逻辑：只保留广东地区的新股预披露
  * - 地区关键词：广东、广州、深圳、东莞、佛山、珠海等
  * - 窗口期：最近30天
  */
@@ -12,7 +12,7 @@ export class TonghuashunIPOCrawler extends BaseCrawler {
   constructor() {
     super({
       name: '同花顺新股预披露',
-      keywords: [],   // 父类不过滤，传空数组
+      keywords: [],
       timeout: 15000,
     });
   }
@@ -25,11 +25,9 @@ export class TonghuashunIPOCrawler extends BaseCrawler {
 
   async parseArticle(html, url) {
     const articles = [];
-    // 计算 30 天前的时间戳
     const thirtyDaysAgo = new Date();
     thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
 
-    // 地区关键词（广东及主要城市）
     const regionKeywords = [
       '广东', '广州', '深圳', '东莞', '佛山', '珠海', '中山', '惠州',
       '江门', '汕头', '湛江', '肇庆', '梅州', '汕尾', '河源', '阳江',
@@ -37,34 +35,40 @@ export class TonghuashunIPOCrawler extends BaseCrawler {
     ];
 
     try {
-      // 方法：按 <tr> 行解析，每行包含 9 个 <td>
-      const trRegex = /<tr>[\s\S]*?<\/tr>/gi;
-      const tdRegex = /<td[^>]*>([\s\S]*?)<\/td>/gi;
+      // ⭐ 直接定位 <tbody> 内的内容，避免匹配到表头
+      const tbodyMatch = html.match(/<tbody>([\s\S]*?)<\/tbody>/i);
+      if (!tbodyMatch) {
+        console.warn(`[${this.name}] 未找到 <tbody> 标签`);
+        return articles;
+      }
 
-      let trMatch;
-      let rowIndex = 0;
+      const tbodyContent = tbodyMatch[1];
+      
+      // ⭐ 按 <tr> 分割行
+      const trMatches = tbodyContent.match(/<tr>[\s\S]*?<\/tr>/gi);
+      if (!trMatches || trMatches.length === 0) {
+        console.warn(`[${this.name}] 未找到数据行`);
+        return articles;
+      }
 
-      while ((trMatch = trRegex.exec(html)) !== null) {
-        const trContent = trMatch[0];
+      console.log(`[${this.name}] 共找到 ${trMatches.length} 行数据`);
 
-        // 跳过表头行（包含 <th> 而非 <td>）
-        if (trContent.includes('<th')) {
-          continue;
-        }
+      for (const trContent of trMatches) {
+        // ⭐ 提取所有 <td> 内容，去除 HTML 标签
+        const tdMatches = trContent.match(/<td[^>]*>([\s\S]*?)<\/td>/gi);
+        if (!tdMatches || tdMatches.length < 9) continue;
 
-        // 提取所有 td 单元格内容
-        const tds = [];
-        let tdMatch;
-        tdRegex.lastIndex = 0;
-        while ((tdMatch = tdRegex.exec(trContent)) !== null) {
-          let content = tdMatch[1].trim();
-          // 清理多余空白和换行
-          content = content.replace(/\s+/g, ' ').trim();
-          tds.push(content);
-        }
+        const tds = tdMatches.map(td => {
+          // 移除 HTML 标签，保留纯文本
+          let text = td.replace(/<[^>]+>/g, '').trim();
+          // 清理多余空白
+          text = text.replace(/\s+/g, ' ').trim();
+          return text;
+        });
 
-        // 正常行应该有 9 列: 序号 | 公司名称 | 披露日期 | 上市板块 | 披露类型 | 预计募集资金 | 预计发行股数 | 预计股东发售股数 | 报告全文
+        // 跳过空行或表头残留
         if (tds.length < 9) continue;
+        if (tds[0] === '序号' || tds[0] === '') continue;
 
         const seq = tds[0] || '';
         const stockName = tds[1] || '';
@@ -76,13 +80,11 @@ export class TonghuashunIPOCrawler extends BaseCrawler {
         const shareholderShares = tds[7] || '';
         const reportLink = tds[8] || '';
 
-        // ⭐ 检查地区（公司名包含地区关键词）
+        // ⭐ 检查地区
         const isRegion = regionKeywords.some(kw => stockName.includes(kw));
-        if (!isRegion) {
-          continue;
-        }
+        if (!isRegion) continue;
 
-        // 解析日期（格式: YYYY-MM-DD）
+        // 解析日期
         let pubDate = disclosureDate;
         if (pubDate) {
           const dateMatch = pubDate.match(/(\d{4}-\d{2}-\d{2})/);
@@ -95,9 +97,7 @@ export class TonghuashunIPOCrawler extends BaseCrawler {
 
         // 过滤 30 天前的数据
         const itemDate = new Date(pubDate);
-        if (itemDate < thirtyDaysAgo) {
-          continue;
-        }
+        if (itemDate < thirtyDaysAgo) continue;
 
         // 构建标题
         let title = `${stockName}`;
@@ -112,12 +112,11 @@ export class TonghuashunIPOCrawler extends BaseCrawler {
         if (estimatedFunds && estimatedFunds !== '-') excerpt += ` | 募资: ${estimatedFunds}`;
         if (estimatedShares && estimatedShares !== '-') excerpt += ` | 发行: ${estimatedShares}`;
 
-        // 构造详情链接（如果有报告全文链接则使用，否则用公司搜索页）
+        // 构造详情链接
         let detailUrl = url;
         if (reportLink && reportLink !== '-' && reportLink.includes('http')) {
           detailUrl = reportLink;
         } else {
-          // 使用公司名称搜索作为备选
           detailUrl = `https://data.10jqka.com.cn/ipo/search/?keyword=${encodeURIComponent(stockName)}`;
         }
 
@@ -127,8 +126,6 @@ export class TonghuashunIPOCrawler extends BaseCrawler {
           excerpt,
           publishedAt: pubDate,
         });
-
-        rowIndex++;
       }
 
       console.log(`[${this.name}] 匹配到 ${articles.length} 家广东新股预披露（最近30天）`);
