@@ -15,15 +15,15 @@ export class CNInfoCrawler extends BaseCrawler {
   constructor() {
     super({
       name: '巨潮资讯IPO公告',
-      keywords: ['广东', '广州', '深圳', '东莞', '佛山', '珠海', '中山', '惠州',
-                 '江门', '汕头', '湛江', '肇庆', '梅州', '汕尾', '河源', '阳江',
-                 '清远', '潮州', '揭阳', '云浮'],
+      // keywords: ['广东', '广州', '深圳', '东莞', '佛山', '珠海', '中山', '惠州',
+      //          '江门', '汕头', '湛江', '肇庆', '梅州', '汕尾', '河源', '阳江',
+      //           '清远', '潮州', '揭阳', '云浮'],
       timeout: 15000,
     });
     // 广东企业代码白名单（沪深均可）：命中白名单的公司输出其全部公告
-    this.stockCodeWhitelist = [];
+    //this.stockCodeWhitelist = [];
     // 标题 IPO 关键词：命中任一才输出（白名单公司不受此限制）
-    this.ipoKeywords = ['发行', '上市', '招股', '公开发行', 'IPO'];
+    //this.ipoKeywords = ['发行', '上市', '招股', '公开发行', 'IPO'];
     // 查询市场：'szse'(深市) / 'sse'(沪市)；实测 2026-08 巨潮 column 参数已不区分市场
     // （szse/sse 返回同一批全市场公告），因此默认只请求一次，避免重复入库。
     this.columns = ['szse'];
