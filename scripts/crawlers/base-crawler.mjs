@@ -37,7 +37,6 @@ export class BaseCrawler {
   let total = 0;
 
   for (const item of items) {
-    // 兼容多种格式
     const targetUrl = typeof item === 'string' ? item : item.url;
     const method = item.method || 'GET';
     const headers = item.headers || { 'User-Agent': this.userAgent };
@@ -49,14 +48,11 @@ export class BaseCrawler {
         headers: headers,
         signal: AbortSignal.timeout(this.timeout),
       };
-      
-      // POST 请求需要 body
       if (method === 'POST' && body) {
         fetchOptions.body = body;
       }
 
       const resp = await fetch(targetUrl, fetchOptions);
-
       if (!resp.ok) {
         console.warn(`[${this.name}] ${targetUrl} 返回 ${resp.status}，跳过`);
         continue;
@@ -65,15 +61,10 @@ export class BaseCrawler {
       const text = await resp.text();
       const articles = await this.parseArticle(text, targetUrl);
 
-      const filtered = articles.filter(a =>
-        this.keywords.some(kw =>
-          (a.title || '').includes(kw) || (a.excerpt || '').includes(kw)
-        )
-      );
-
-      this.results.push(...filtered);
-      total += filtered.length;
-      console.log(`[${this.name}] 从 ${targetUrl} 抓取 ${filtered.length} 条（共 ${articles.length} 条原始）`);
+      // 直接使用全部数据，不过滤，由子类在 parseArticle 中自行决定
+      this.results.push(...articles);
+      total += articles.length;
+      console.log(`[${this.name}] 从 ${targetUrl} 抓取 ${articles.length} 条`);
     } catch (err) {
       console.warn(`[${this.name}] ${targetUrl} 抓取失败: ${err.message}`);
     }
