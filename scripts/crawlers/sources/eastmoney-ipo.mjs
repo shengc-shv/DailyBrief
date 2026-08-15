@@ -3,25 +3,19 @@ import { BaseCrawler } from '../base-crawler.mjs';
 /**
  * 东方财富 - IPO辅导备案信息爬虫（API版）
  * 数据来源: https://datacenter-web.eastmoney.com/api/data/v1/get
- * 
- * 直接调用东方财富官方API，返回结构化JSON数据
- * 比解析HTML稳定100倍
+ *
+ * 过滤逻辑：保留广东地区企业（数据本身已是辅导备案，无需额外 IPO 过滤）
+ * - 地区关键词：广东、广州、深圳、东莞、佛山、珠海等
  */
 export class EastMoneyIPOCrawler extends BaseCrawler {
   constructor() {
     super({
       name: '东方财富IPO辅导',
-      // 广东地区关键词（用于二次过滤）
-      keywords: ['广东', '广州', '深圳', '东莞', '佛山', '珠海', '中山', '惠州', 
-                 '江门', '汕头', '湛江', '肇庆', '梅州', '汕尾', '河源', '阳江', 
-                 '清远', '潮州', '揭阳', '云浮'],
+      keywords: [],   // 父类不过滤，传空数组
       timeout: 15000,
     });
   }
 
-  /**
-   * 直接调用东方财富API
-   */
   async getUrls() {
     const baseUrl = 'https://datacenter-web.eastmoney.com/api/data/v1/get';
     const params = new URLSearchParams({
@@ -32,26 +26,28 @@ export class EastMoneyIPOCrawler extends BaseCrawler {
       source: 'WEB',
       client: 'WEB',
       pageNumber: '1',
-      pageSize: '100',  // 每页100条，共54页，但第一页已包含最新数据
+      pageSize: '100',
     });
-    
-    // 只抓取第一页（最新100条），足够覆盖近期的辅导备案信息
+
     return [`${baseUrl}?${params.toString()}`];
   }
 
-  /**
-   * 解析API返回的JSON数据
-   */
   async parseArticle(responseText, url) {
     const articles = [];
     // 计算 30 天前的时间戳
     const thirtyDaysAgo = new Date();
     thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
 
+    // 地区关键词（广东及主要城市）
+    const regionKeywords = [
+      '广东', '广州', '深圳', '东莞', '佛山', '珠海', '中山', '惠州',
+      '江门', '汕头', '湛江', '肇庆', '梅州', '汕尾', '河源', '阳江',
+      '清远', '潮州', '揭阳', '云浮'
+    ];
+
     try {
       const data = JSON.parse(responseText);
-      
-      // 检查数据结构
+
       if (!data.result || !data.result.data || !Array.isArray(data.result.data)) {
         console.warn(`[${this.name}] API返回数据格式异常`);
         return articles;
@@ -65,34 +61,27 @@ export class EastMoneyIPOCrawler extends BaseCrawler {
         const tutorOrg = item.TUTOR_ORG || '';
         const status = item.TUTOR_PROCESS_STATE || '';
         const reportType = item.REPORT_TYPE || '';
-        const dispatchOrg = item.DISPATCH_ORG || '';  // 派出证监局
-        const reportTitle = item.REPORT_TITLE || '';
+        const dispatchOrg = item.DISPATCH_ORG || '';
         const recordDate = item.RECORD_DATE || '';
-
-        // 提取公司代码（用于构造详情链接）
         const orgCode = item.ORG_CODE || '';
 
         // 解析日期
-        let pubDate = recordDate;
-        if (pubDate) {
-          const dateMatch = pubDate.match(/(\d{4}-\d{2}-\d{2})/);
-          if (dateMatch) {
-            pubDate = dateMatch[1];
-          }
-        } else {
-          pubDate = new Date().toISOString().slice(0, 10);
-        }
+        let pubDate = (recordDate || '').match(/(\d{4}-\d{2}-\d{2})/)?.[1] ||
+          new Date().toISOString().slice(0, 10);
 
-        // ⭐ 过滤 30 天前的数据
+        // 过滤 30 天前的数据
         const itemDate = new Date(pubDate);
         if (itemDate < thirtyDaysAgo) {
-          continue;  // 跳过 30 天前的数据
+          continue;
         }
 
-        // 筛选广东地区企业（通过派出机构判断）
-        const isGuangdong = /广东|深圳/.test(dispatchOrg);
-        
-        if (!isGuangdong) continue;
+        // ⭐ 检查地区（公司名或派出机构包含地区关键词）
+        const allText = `${companyName} ${dispatchOrg}`;
+        const isRegion = regionKeywords.some(kw => allText.includes(kw));
+
+        if (!isRegion) {
+          continue;
+        }
 
         // 构建标题
         let title = companyName;
@@ -106,15 +95,15 @@ export class EastMoneyIPOCrawler extends BaseCrawler {
         if (status) excerpt += ` | 状态: ${status}`;
         if (reportType) excerpt += ` | 报告: ${reportType}`;
 
-        // 构造详情链接（东方财富的详情页）
-        const detailUrl = orgCode 
+        // 构造详情链接
+        const detailUrl = orgCode
           ? `https://data.eastmoney.com/xg/ipo/fd/${orgCode}.html`
           : url;
 
         articles.push({
-          title: title,
+          title,
           url: detailUrl,
-          excerpt: excerpt,
+          excerpt,
           publishedAt: pubDate,
         });
       }
