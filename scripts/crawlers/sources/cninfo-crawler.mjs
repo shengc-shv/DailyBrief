@@ -7,7 +7,7 @@ export class CNInfoCrawler extends BaseCrawler {
   constructor() {
     super({
       name: '巨潮资讯公告',
-      keywords: [],
+      keywords: [],  // 保留空数组，但重写 run 后不会用到
       timeout: 15000,
     });
     this.columns = ['szse'];
@@ -48,6 +48,53 @@ export class CNInfoCrawler extends BaseCrawler {
     }));
   }
 
+  // ⭐ 重写 run 方法：完全绕过基类的过滤逻辑
+  async run() {
+    console.log(`[${this.name}] 开始抓取...`);
+    const items = await this.getUrls();
+    let total = 0;
+
+    for (const item of items) {
+      const targetUrl = typeof item === 'string' ? item : item.url;
+      const method = item.method || 'GET';
+      const headers = item.headers || { 'User-Agent': this.userAgent };
+
+      try {
+        const fetchOptions = {
+          method: method,
+          headers: headers,
+          signal: AbortSignal.timeout(this.timeout),
+        };
+
+        if (method === 'POST' && item.body) {
+          fetchOptions.body = item.body;
+        }
+
+        const resp = await fetch(targetUrl, fetchOptions);
+
+        if (!resp.ok) {
+          console.warn(`[${this.name}] ${targetUrl} 返回 ${resp.status}，跳过`);
+          continue;
+        }
+
+        const text = await resp.text();
+        const articles = await this.parseArticle(text, targetUrl);
+
+        // ⭐ 直接使用全部数据，不做任何过滤
+        this.results.push(...articles);
+        total += articles.length;
+        console.log(`[${this.name}] 从 ${targetUrl} 抓取 ${articles.length} 条（共 ${articles.length} 条原始）`);
+      } catch (err) {
+        console.warn(`[${this.name}] ${targetUrl} 抓取失败: ${err.message}`);
+      }
+
+      await new Promise(r => setTimeout(r, 1000 + Math.random() * 2000));
+    }
+
+    console.log(`[${this.name}] 完成，共 ${this.results.length} 条`);
+    return this.results;
+  }
+
   async parseArticle(responseText, url) {
     const articles = [];
     try {
@@ -59,7 +106,6 @@ export class CNInfoCrawler extends BaseCrawler {
       }
       console.log(`[${this.name}] 接口共返回 ${list.length} 条公告`);
 
-      // ⭐ 去掉所有过滤，直接展示所有公告
       for (const item of list) {
         const stockName = item.secName || '';
         const stockCode = item.secCode || '';
