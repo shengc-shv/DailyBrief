@@ -7,6 +7,7 @@ export class CNInfoCrawler extends BaseCrawler {
   constructor() {
     super({
       name: '巨潮资讯公告',
+      keywords: [],
       timeout: 15000,
     });
     this.columns = ['szse'];
