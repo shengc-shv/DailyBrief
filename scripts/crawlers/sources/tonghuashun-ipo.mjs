@@ -35,7 +35,7 @@ export class TonghuashunIPOCrawler extends BaseCrawler {
     ];
 
     try {
-      // ⭐ 直接定位 <tbody> 内的内容，避免匹配到表头
+      // 定位 <tbody>
       const tbodyMatch = html.match(/<tbody>([\s\S]*?)<\/tbody>/i);
       if (!tbodyMatch) {
         console.warn(`[${this.name}] 未找到 <tbody> 标签`);
@@ -43,8 +43,6 @@ export class TonghuashunIPOCrawler extends BaseCrawler {
       }
 
       const tbodyContent = tbodyMatch[1];
-      
-      // ⭐ 按 <tr> 分割行
       const trMatches = tbodyContent.match(/<tr>[\s\S]*?<\/tr>/gi);
       if (!trMatches || trMatches.length === 0) {
         console.warn(`[${this.name}] 未找到数据行`);
@@ -54,14 +52,17 @@ export class TonghuashunIPOCrawler extends BaseCrawler {
       console.log(`[${this.name}] 共找到 ${trMatches.length} 行数据`);
 
       for (const trContent of trMatches) {
-        // ⭐ 提取所有 <td> 内容，去除 HTML 标签
+        // ⭐ 提取所有 <td> 内容
         const tdMatches = trContent.match(/<td[^>]*>([\s\S]*?)<\/td>/gi);
         if (!tdMatches || tdMatches.length < 9) continue;
 
+        // ⭐ 关键修复：提取纯文本，去除所有 HTML 标签
         const tds = tdMatches.map(td => {
-          // 移除 HTML 标签，保留纯文本
-          let text = td.replace(/<[^>]+>/g, '').trim();
-          // 清理多余空白
+          // 先移除 <a> 标签（保留文本）
+          let text = td.replace(/<a[^>]*>([\s\S]*?)<\/a>/gi, '$1');
+          // 再移除所有其他 HTML 标签
+          text = text.replace(/<[^>]+>/g, '');
+          // 清理空白字符
           text = text.replace(/\s+/g, ' ').trim();
           return text;
         });
@@ -70,14 +71,12 @@ export class TonghuashunIPOCrawler extends BaseCrawler {
         if (tds.length < 9) continue;
         if (tds[0] === '序号' || tds[0] === '') continue;
 
-        const seq = tds[0] || '';
         const stockName = tds[1] || '';
         const disclosureDate = tds[2] || '';
         const board = tds[3] || '';
         const disclosureType = tds[4] || '';
         const estimatedFunds = tds[5] || '';
         const estimatedShares = tds[6] || '';
-        const shareholderShares = tds[7] || '';
         const reportLink = tds[8] || '';
 
         // ⭐ 检查地区
@@ -104,7 +103,6 @@ export class TonghuashunIPOCrawler extends BaseCrawler {
         if (board) title += ` [${board}]`;
         if (disclosureType) title += ` (${disclosureType})`;
 
-        // 构建摘要
         let excerpt = `同花顺新股预披露`;
         if (board) excerpt += ` | 板块: ${board}`;
         if (disclosureType) excerpt += ` | 类型: ${disclosureType}`;
@@ -112,9 +110,8 @@ export class TonghuashunIPOCrawler extends BaseCrawler {
         if (estimatedFunds && estimatedFunds !== '-') excerpt += ` | 募资: ${estimatedFunds}`;
         if (estimatedShares && estimatedShares !== '-') excerpt += ` | 发行: ${estimatedShares}`;
 
-        // 构造详情链接
         let detailUrl = url;
-        if (reportLink && reportLink !== '-' && reportLink.includes('http')) {
+        if (reportLink && reportLink !== '-' && reportLink.startsWith('http')) {
           detailUrl = reportLink;
         } else {
           detailUrl = `https://data.10jqka.com.cn/ipo/search/?keyword=${encodeURIComponent(stockName)}`;
