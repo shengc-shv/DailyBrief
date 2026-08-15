@@ -1261,9 +1261,9 @@ export function renderHtml(
 
   <nav class="tabs" role="tablist">
     <button class="tab active" data-tab="tech">${CATEGORY_LABELS.tech}<span class="count">${counts.tech}</span></button>
+    ${trading ? `<button class="tab" data-tab="trading">${STR.catTrading}<span class="count">${trading.tickers.length}</span></button>` : ""}
     <button class="tab" data-tab="finance">${CATEGORY_LABELS.finance}<span class="count">${counts.finance}</span></button>
     <button class="tab" data-tab="gd-ipo">${CATEGORY_LABELS['gd-ipo']}<span class="count">${counts['gd-ipo']}</span></button>
-    <button class="tab" data-tab="politics">${CATEGORY_LABELS.politics}<span class="count">${counts.politics}</span></button>
   </nav>
 
   <section class="panel active" data-panel="tech">
@@ -1272,12 +1272,11 @@ export function renderHtml(
   <section class="panel" data-panel="finance">
     ${renderRawCategoryPanel("finance", raw.finance)}
   </section>
+  ${trading ? `<section class="panel" data-panel="trading">${renderTradingPanel(trading)}</section>` : ""}
   <section class="panel" data-panel="gd-ipo">
     ${renderRawCategoryPanel("gd-ipo", raw['gd-ipo'] || [])}
   </section>
-  <section class="panel" data-panel="politics">
-    ${renderRawCategoryPanel("politics", raw.politics)}
-  </section>
+  
   
 
   <footer>
