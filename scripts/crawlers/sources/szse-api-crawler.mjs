@@ -1,5 +1,8 @@
 import { BaseCrawler } from '../base-crawler.mjs';
+import { exec } from 'child_process';
+import { promisify } from 'util';
 
+const execAsync = promisify(exec);
 const SZSE_UA =
   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36';
 
@@ -10,12 +13,12 @@ export class SZSEAPICrawler extends BaseCrawler {
       keywords: ['广东', '广州', '深圳', '东莞', '佛山', '珠海', '中山', '惠州',
                  '江门', '汕头', '湛江', '肇庆', '梅州', '汕尾', '河源', '阳江',
                  '清远', '潮州', '揭阳', '云浮'],
-      timeout: 30000,  // 增加到 30 秒
+      timeout: 30000,
     });
     this.stockCodeWhitelist = [];
     this.categoryWhitelist = ['0102'];
     this.ipoKeywords = ['发行', '上市', '招股', '公开发行', 'IPO'];
-    this.pages = 1;  // 只抓 1 页，减少超时风险
+    this.pages = 1;
   }
 
   getUrls() {
@@ -30,8 +33,6 @@ export class SZSEAPICrawler extends BaseCrawler {
           'User-Agent': SZSE_UA,
           'Accept': 'application/json, text/plain, */*',
           'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8',
-          'Accept-Encoding': 'gzip, deflate, br',
-          'Connection': 'keep-alive',
           'Cache-Control': 'no-cache',
         },
       });
@@ -39,7 +40,7 @@ export class SZSEAPICrawler extends BaseCrawler {
     return urls;
   }
 
-  // ⭐ 重写 run 方法，增加重试和更详细的错误处理
+  // ⭐ 使用 curl 替代 fetch
   async run() {
     console.log(`[${this.name}] 开始抓取...`);
     const items = await this.getUrls();
@@ -47,63 +48,44 @@ export class SZSEAPICrawler extends BaseCrawler {
 
     for (const item of items) {
       const targetUrl = typeof item === 'string' ? item : item.url;
-      const method = item.method || 'GET';
       const headers = item.headers || { 'User-Agent': this.userAgent };
 
-      // 重试机制：最多尝试 2 次
-      let lastError = null;
-      for (let attempt = 1; attempt <= 2; attempt++) {
-        try {
-          console.log(`[${this.name}] 请求 (尝试 ${attempt}/2): ${targetUrl}`);
-          
-          const fetchOptions = {
-            method: method,
-            headers: headers,
-            signal: AbortSignal.timeout(this.timeout),
-          };
-
-          if (method === 'POST' && item.body) {
-            fetchOptions.body = item.body;
-          }
-
-          const resp = await fetch(targetUrl, fetchOptions);
-
-          if (!resp.ok) {
-            console.warn(`[${this.name}] ${targetUrl} 返回 ${resp.status}，${attempt < 2 ? '重试中...' : '跳过'}`);
-            if (attempt < 2) {
-              await new Promise(r => setTimeout(r, 2000 * attempt));
-              continue;
-            }
-            break;
-          }
-
-          const text = await resp.text();
-          const articles = await this.parseArticle(text, targetUrl);
-
-          const filtered = articles.filter(a =>
-            this.keywords.some(kw =>
-              (a.title || '').includes(kw) || (a.excerpt || '').includes(kw)
-            )
-          );
-
-          this.results.push(...filtered);
-          total += filtered.length;
-          console.log(`[${this.name}] 从 ${targetUrl} 抓取 ${filtered.length} 条（共 ${articles.length} 条原始）`);
-          break; // 成功，跳出重试循环
-
-        } catch (err) {
-          lastError = err;
-          console.warn(`[${this.name}] 尝试 ${attempt}/2 失败: ${err.message}`);
-          if (attempt < 2) {
-            const delay = 3000 * attempt;
-            console.log(`[${this.name}] 等待 ${delay}ms 后重试...`);
-            await new Promise(r => setTimeout(r, delay));
-          }
+      try {
+        // 构建 curl 命令
+        const headerArgs = [];
+        for (const [key, value] of Object.entries(headers)) {
+          headerArgs.push(`-H "${key}: ${value}"`);
         }
-      }
 
-      if (lastError) {
-        console.warn(`[${this.name}] ${targetUrl} 最终失败: ${lastError.message}`);
+        const curlCmd = `curl -s -L --max-time 30 ${headerArgs.join(' ')} "${targetUrl}"`;
+        console.log(`[${this.name}] 执行 curl 请求...`);
+
+        const { stdout, stderr } = await execAsync(curlCmd);
+
+        if (stderr && !stderr.includes('Warning')) {
+          console.warn(`[${this.name}] curl 警告: ${stderr}`);
+        }
+
+        // 检查是否返回了有效的 JSON
+        const trimmed = stdout.trim();
+        if (!trimmed.startsWith('{') && !trimmed.startsWith('[')) {
+          console.warn(`[${this.name}] 返回非 JSON 数据，可能是反爬拦截`);
+          continue;
+        }
+
+        const articles = await this.parseArticle(trimmed, targetUrl);
+
+        const filtered = articles.filter(a =>
+          this.keywords.some(kw =>
+            (a.title || '').includes(kw) || (a.excerpt || '').includes(kw)
+          )
+        );
+
+        this.results.push(...filtered);
+        total += filtered.length;
+        console.log(`[${this.name}] 从 ${targetUrl} 抓取 ${filtered.length} 条（共 ${articles.length} 条原始）`);
+      } catch (err) {
+        console.warn(`[${this.name}] ${targetUrl} 抓取失败: ${err.message}`);
       }
 
       await new Promise(r => setTimeout(r, 1500 + Math.random() * 2000));
