@@ -3,14 +3,61 @@ import "./_env";
 import fs from "node:fs";
 import path from "node:path";
 
-import { sources } from "../lib/sources/registry";
+import { sources, loadAllSources } from "../lib/sources/registry";
 import { fetchSource } from "../lib/sources/dispatch";
 import type { ArticleInput } from "../lib/ai/pipeline";
+import { groupRaw, renderHtml } from "../lib/output/render";
+import { todayKey } from "../lib/utils";
 
-// Source-fetch sanity check only — does NOT call the LLM. For the full
-// ingest → digest → write-to-disk pipeline use `npm run daily` instead.
+const OUTPUT_DIR = "daily_reports";
+
+// 生成一个空报告（不调用 AI）
+function generateEmptyReport(articles: ArticleInput[]) {
+  const techArticles = articles.filter(a => a.category === 'tech');
+  const financeArticles = articles.filter(a => a.category === 'finance');
+  const politicsArticles = articles.filter(a => a.category === 'politics');
+  const gdIpoArticles = articles.filter(a => a.category === 'gd-ipo');
+
+  return {
+    hero_headline: "",
+    daily_overview: "",
+    tech_briefs: techArticles.slice(0, 5).map(a => ({
+      title: a.title,
+      url: a.url,
+      source: a.source,
+      summary: a.summary || a.excerpt || "",
+      importance: 1,
+    })),
+    finance_briefs: financeArticles.slice(0, 5).map(a => ({
+      title: a.title,
+      url: a.url,
+      source: a.source,
+      summary: a.summary || a.excerpt || "",
+      importance: 1,
+    })),
+    politics_briefs: politicsArticles.slice(0, 3).map(a => ({
+      title: a.title,
+      url: a.url,
+      source: a.source,
+      summary: a.summary || a.excerpt || "",
+      importance: 1,
+    })),
+    gd_ipo_briefs: gdIpoArticles.slice(0, 20).map(a => ({
+      title: a.title,
+      url: a.url,
+      source: a.source,
+      summary: a.summary || a.excerpt || "",
+      importance: 1,
+    })),
+    editor_note: "",
+    keywords: [],
+  };
+}
+
 async function main() {
-  console.log("Fetching from sources…\n");
+  console.log("🚀 Dry-run 模式（无 AI）开始...\n");
+
+  const date = todayKey();
   const articles: ArticleInput[] = [];
 
   // ----- 加载本地爬虫数据（广东IPO）-----
@@ -43,6 +90,7 @@ async function main() {
     console.log(`  ℹ️ 爬虫数据文件不存在: ${dataPath}`);
   }
 
+  // 抓取所有 enabled 数据源
   const enabled = sources.filter((s) => s.enabled !== false);
   for (const source of enabled) {
     try {
@@ -55,10 +103,34 @@ async function main() {
     }
   }
 
-  console.log(`\nTotal articles: ${articles.length}`);
-  console.log("\nTop 10 articles:");
+  console.log(`\n📊 总文章数: ${articles.length}`);
+
+  // 统计各分类数量
+  const catCount: Record<string, number> = {};
+  for (const a of articles) {
+    catCount[a.category] = (catCount[a.category] || 0) + 1;
+  }
+  console.log(`📈 分类统计:`, catCount);
+
+  // ----- 渲染 HTML（无 AI）-----
+  console.log(`\n🎨 渲染 HTML 报告 (${date})...`);
+  const raw = groupRaw(articles, sources);
+  
+  // 生成空报告（不含 AI 摘要）
+  const report = generateEmptyReport(articles);
+  
+  const html = renderHtml(report, raw, date);
+
+  // 写入文件
+  const dateDir = path.join(OUTPUT_DIR, date);
+  fs.mkdirSync(dateDir, { recursive: true });
+  const base = path.join(dateDir, date);
+  fs.writeFileSync(`${base}.html`, html, "utf8");
+  console.log(`✅ 报告已生成: ${base}.html`);
+
+  console.log(`\n📝 前 10 条文章:`);
   articles.slice(0, 10).forEach((a, i) => {
-    console.log(`  ${i + 1}. [${a.category}] ${a.title}`);
+    console.log(`  ${i + 1}. [${a.category}] ${a.title?.slice(0, 50)}`);
   });
 }
 
