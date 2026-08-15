@@ -274,6 +274,13 @@ export function groupRaw(
   articles: ArticleInput[],
   registry: SourceDef[],
 ): RawByCategory {
+   // 调试：统计各分类文章数量
+  const catCount: Record<string, number> = {};
+  for (const a of articles) {
+    catCount[a.category] = (catCount[a.category] || 0) + 1;
+  }
+  console.log('[groupRaw] 文章分类统计:', JSON.stringify(catCount));
+  
   const subcatOf = new Map<string, string | undefined>();
   for (const s of registry) subcatOf.set(s.id, s.subcategory);
   // Drop articles from sources that have since been disabled — important
@@ -290,6 +297,9 @@ export function groupRaw(
     politics: new Map(),
     'gd-ipo': new Map(),
   };
+
+  console.log('[groupRaw] buckets keys:', Object.keys(buckets));
+  console.log('[groupRaw] buckets[gd-ipo] size:', buckets['gd-ipo']?.size);
   // Pre-seed empty buckets for every enabled source so per-source-tabbed
   // subcategories (e.g. cn-community) still render a tab for sources that
   // returned 0 items today. Without this, a transient LinuxDo Cloudflare
@@ -415,6 +425,7 @@ export function groupRaw(
     }
     out[cat] = subs;
   }
+  console.log('[groupRaw] 进入兜底检查, buckets[gd-ipo] size:', buckets['gd-ipo']?.size, 'out[gd-ipo] length:', out['gd-ipo']?.length);
   // ⭐ 兜底方案：如果 gd-ipo 有数据但 out['gd-ipo'] 为空，强制扁平渲染
   if (buckets['gd-ipo'] && buckets['gd-ipo'].size > 0) {
     const existing = out['gd-ipo'] || [];
