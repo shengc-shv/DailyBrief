@@ -3,10 +3,6 @@ import { BaseCrawler } from '../base-crawler.mjs';
 /**
  * 同花顺 - 新股预披露爬虫
  * 数据来源: https://data.10jqka.com.cn/ipo/xgyp/
- *
- * 过滤逻辑：只保留广东地区的新股预披露
- * - 地区关键词：广东、广州、深圳、东莞、佛山、珠海等
- * - 窗口期：最近30天
  */
 export class TonghuashunIPOCrawler extends BaseCrawler {
   constructor() {
@@ -35,7 +31,6 @@ export class TonghuashunIPOCrawler extends BaseCrawler {
     ];
 
     try {
-      // 定位 <tbody>
       const tbodyMatch = html.match(/<tbody>([\s\S]*?)<\/tbody>/i);
       if (!tbodyMatch) {
         console.warn(`[${this.name}] 未找到 <tbody> 标签`);
@@ -51,23 +46,20 @@ export class TonghuashunIPOCrawler extends BaseCrawler {
 
       console.log(`[${this.name}] 共找到 ${trMatches.length} 行数据`);
 
+      // ⭐ 调试：打印前几行的原始 HTML
+      console.log(`[${this.name}] 第一行原始HTML片段:`, trMatches[0]?.slice(0, 200));
+
       for (const trContent of trMatches) {
-        // ⭐ 提取所有 <td> 内容
         const tdMatches = trContent.match(/<td[^>]*>([\s\S]*?)<\/td>/gi);
         if (!tdMatches || tdMatches.length < 9) continue;
 
-        // ⭐ 关键修复：提取纯文本，去除所有 HTML 标签
         const tds = tdMatches.map(td => {
-          // 先移除 <a> 标签（保留文本）
           let text = td.replace(/<a[^>]*>([\s\S]*?)<\/a>/gi, '$1');
-          // 再移除所有其他 HTML 标签
           text = text.replace(/<[^>]+>/g, '');
-          // 清理空白字符
           text = text.replace(/\s+/g, ' ').trim();
           return text;
         });
 
-        // 跳过空行或表头残留
         if (tds.length < 9) continue;
         if (tds[0] === '序号' || tds[0] === '') continue;
 
@@ -79,11 +71,14 @@ export class TonghuashunIPOCrawler extends BaseCrawler {
         const estimatedShares = tds[6] || '';
         const reportLink = tds[8] || '';
 
-        // ⭐ 检查地区
+        // ⭐ 调试：打印前几条的 stockName
+        if (articles.length < 5) {
+          console.log(`[${this.name}] [调试] 提取到的公司名: "${stockName}"`);
+        }
+
         const isRegion = regionKeywords.some(kw => stockName.includes(kw));
         if (!isRegion) continue;
 
-        // 解析日期
         let pubDate = disclosureDate;
         if (pubDate) {
           const dateMatch = pubDate.match(/(\d{4}-\d{2}-\d{2})/);
@@ -94,11 +89,10 @@ export class TonghuashunIPOCrawler extends BaseCrawler {
           pubDate = new Date().toISOString().slice(0, 10);
         }
 
-        // 过滤 30 天前的数据
-        const itemDate = new Date(pubDate);
-        //if (itemDate < thirtyDaysAgo) continue;
+        // 注释掉日期过滤，先看能不能匹配地区
+        // const itemDate = new Date(pubDate);
+        // if (itemDate < thirtyDaysAgo) continue;
 
-        // 构建标题
         let title = `${stockName}`;
         if (board) title += ` [${board}]`;
         if (disclosureType) title += ` (${disclosureType})`;
@@ -125,7 +119,7 @@ export class TonghuashunIPOCrawler extends BaseCrawler {
         });
       }
 
-      console.log(`[${this.name}] 匹配到 ${articles.length} 家广东新股预披露（最近30天）`);
+      console.log(`[${this.name}] 匹配到 ${articles.length} 家广东新股预披露`);
 
     } catch (err) {
       console.error(`[${this.name}] 解析HTML失败:`, err.message);
