@@ -5,7 +5,7 @@ import type {
   TradingSection,
 } from "../ai/pipeline";
 import type { WatchlistPick } from "../ai/trading-commentary";
-import { REPORT_LOCALE，loadAllSources  } from "../sources/registry";
+import { REPORT_LOCALE,loadAllSources  } from "../sources/registry";
 import { getReportTz } from "../utils";
 import type { Category, SourceDef } from "../sources/types";
 import { V2EX_OFF_TOPIC_RE } from "../sources/v2ex";
