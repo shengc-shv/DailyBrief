@@ -3,7 +3,7 @@ import path from 'node:path';
 import { HKEXCrawler } from './sources/hkex-ipo.mjs';  // 只导入港交所
 import { SSEAPICrawler } from './sources/sse-api.mjs';
 import { EastMoneyIPOCrawler } from './sources/eastmoney-ipo.mjs';
-import { TonghuashunIPOCrawler } from './sources/tonghuashunIPOCrawler-ipo.mjs';
+import { TonghuashunIPOCrawler } from './sources/tonghuashun-ipo.mjs';
 //import { BSEAPICrawler } from './sources/bse-api.mjs';
 import { CNInfoCrawler } from './sources/cninfo-crawler.mjs';
 const OUTPUT_PATH = path.resolve(process.cwd(), 'data/crawled-articles.json');
