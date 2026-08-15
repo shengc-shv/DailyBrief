@@ -35,6 +35,9 @@ export class HKEXCrawler extends BaseCrawler {
 
   async parseArticle(responseText, url) {
     const articles = [];
+    // 计算 30 天前的时间戳
+    const thirtyDaysAgo = new Date();
+    thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
     
     try {
       const data = JSON.parse(responseText);
@@ -68,6 +71,23 @@ export class HKEXCrawler extends BaseCrawler {
 
         if (!isRelevant) continue;
 
+        // 解析日期
+        let pubDate = relTime;
+        if (pubDate) {
+          const dateMatch = pubDate.match(/(\d{2})\/(\d{2})\/(\d{4})/);
+          if (dateMatch) {
+            pubDate = `${dateMatch[3]}-${dateMatch[2]}-${dateMatch[1]}`;
+          }
+        } else {
+          pubDate = new Date().toISOString().slice(0, 10);
+        }
+
+        // ⭐ 过滤 30 天前的数据
+        const itemDate = new Date(pubDate);
+        if (itemDate < thirtyDaysAgo) {
+          continue;  // 跳过 30 天前的公告
+        }
+
         let fullTitle = title;
         if (stockNames) fullTitle += ` (${stockNames})`;
 
@@ -85,16 +105,6 @@ export class HKEXCrawler extends BaseCrawler {
         if (fileExt) excerpt += ` | 格式: ${fileExt.toUpperCase()}`;
         if (fileSize) excerpt += ` | 大小: ${fileSize}`;
 
-        let pubDate = relTime;
-        if (pubDate) {
-          const dateMatch = pubDate.match(/(\d{2})\/(\d{2})\/(\d{4})/);
-          if (dateMatch) {
-            pubDate = `${dateMatch[3]}-${dateMatch[2]}-${dateMatch[1]}`;
-          }
-        } else {
-          pubDate = new Date().toISOString().slice(0, 10);
-        }
-
         articles.push({
           title: fullTitle,
           url: pdfUrl || url,
@@ -103,7 +113,7 @@ export class HKEXCrawler extends BaseCrawler {
         });
       }
 
-      console.log(`[${this.name}] 匹配到 ${articles.length} 条相关公告（共 ${list.length} 条）`);
+      console.log(`[${this.name}] 匹配到 ${articles.length} 条相关公告（共 ${list.length} 条，最近30天）`);
       
     } catch (err) {
       console.error(`[${this.name}] 解析JSON失败:`, err.message);
