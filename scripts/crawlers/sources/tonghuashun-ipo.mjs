@@ -135,8 +135,8 @@ export class TonghuashunIPOCrawler extends BaseCrawler {
         }
 
         // 日期过滤（暂时注释掉，先验证编码）
-        // const itemDate = new Date(pubDate);
-        // if (itemDate < thirtyDaysAgo) continue;
+         const itemDate = new Date(pubDate);
+         if (itemDate < thirtyDaysAgo) continue;
 
         let title = `${stockName}`;
         if (board) title += ` [${board}]`;
